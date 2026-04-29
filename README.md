@@ -11,7 +11,7 @@
 
 ## About Me
 
-I am a Mechanical Engineer working at the intersection of oil and gas asset management, machine learning, and published aerospace research.
+I am a Mechanical Engineer and published aerospace researcher working at the intersection of asset management and machine learning.
 
 Currently working as a **CMMS Engineer on the ADNOC asset management programme** (Invotyx, Islamabad) — building SAP PM master data for rotating equipment (pumps, compressors), static equipment (valves, vessels), and instrumentation across upstream and downstream O&G facilities. Every record I produce feeds directly into live maintenance operations for one of the world's five largest energy companies by reserves.
 
