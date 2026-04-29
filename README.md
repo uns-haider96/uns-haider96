@@ -5,7 +5,6 @@
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Muhammad_Uns_Haider_Shah-0077B5?style=flat&logo=linkedin)](https://www.linkedin.com/in/muhammad-uns-haider-shah)
 [![Email](https://img.shields.io/badge/Email-shahuns963@gmail.com-D14836?style=flat&logo=gmail)](mailto:shahuns963@gmail.com)
 [![PEC](https://img.shields.io/badge/PEC-MECH/059916-006400?style=flat)](https://www.pec.org.pk)
-[![Publication](https://img.shields.io/badge/DOI-10.1177/09544100261447561-1B3A6B?style=flat&logo=doi)](https://doi.org/10.1177/09544100261447561)
 
 ---
 
