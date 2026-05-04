@@ -37,10 +37,10 @@ Outside the day job, I build things independently:
 
 | Repository | Description | Key Result |
 |---|---|---|
-| [bearing-fault-detection-cwru](../bearing-fault-detection-cwru) | Random Forest classifier for rotating equipment fault detection | **96.5% accuracy · 10 fault classes** |
-| [turbofan-rul-prediction-nasa-cmapss](../turbofan-rul-prediction-nasa-cmapss) | End-to-end RUL prediction pipeline on NASA CMAPSS | **RMSE 17.97 cycles · 14.1% improvement** |
-| [fmcg-supply-chain-analytics](../fmcg-supply-chain-analytics) | MySQL + Power BI commercial supply chain audit | **5,000 orders · 30.6% delay diagnosed** |
-| [bwb-uav-aerodynamic-optimisation](../bwb-uav-aerodynamic-optimisation) | AI-driven BWB UAV design using GPR surrogate + CFD | **23% L/D improvement · Published** |
+| [bearing-fault-detection-cwru](https://github.com/uns-haider96/bearing-fault-detection-cwru) | Random Forest classifier for rotating equipment fault detection | **96.5% accuracy · 10 fault classes** |
+| [turbofan-rul-prediction-nasa-cmapss](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss) | End-to-end RUL prediction pipeline on NASA CMAPSS | **RMSE 17.97 cycles · 14.1% improvement** |
+| [fmcg-supply-chain-analytics](https://github.com/uns-haider96/fmcg-supply-chain-analytics) | MySQL + Power BI commercial supply chain audit | **5,000 orders · 30.6% delay diagnosed** |
+| [bwb-uav-aerodynamic-optimisation](https://github.com/uns-haider96/bwb-uav-aerodynamic-optimisation) | AI-driven BWB UAV design using GPR surrogate + CFD | **23% L/D improvement · Published** |
 
 ---
 
