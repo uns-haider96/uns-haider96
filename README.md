@@ -37,7 +37,7 @@ Outside the day job, I build things independently:
 
 | Repository | Description | Key Result |
 |---|---|---|
-| [bwb-uav-aerodynamic-optimisation](https://github.com/uns-haider96/bwb-uav-aerodynamic-optimisation](https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization) | AI-driven BWB UAV design using GPR surrogate + CFD | **23% L/D improvement · Published** |
+| [bwb-uav-aerodynamic-optimisation](https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization) | AI-driven BWB UAV design using GPR surrogate + CFD | **23% L/D improvement · Published** |
 | [turbofan-rul-prediction-nasa-cmapss](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss) | End-to-end RUL prediction pipeline on NASA CMAPSS | **RMSE 17.97 cycles · 14.1% improvement** |
 
 
