@@ -1,6 +1,6 @@
 # Hi, I'm Muhammad Uns Haider Shah 👋
 
-Mechanical Engineering graduate with interests in UAV design, CFD, AI-driven surrogate modeling, optimization, and aerospace research.
+Mechanical Engineering graduate with interests in UAV design, CFD, AI-driven surrogate modeling, predictive maintenance, fault detection, and data analytics.
 
 ## 🚀 About Me
 
@@ -8,32 +8,48 @@ Mechanical Engineering graduate with interests in UAV design, CFD, AI-driven sur
 - 🛩️ Final year project focused on Blended Wing Body UAV design and optimization
 - 🔬 Experience with CFD analysis, wind tunnel testing, UAV manufacturing, and AI-based surrogate modeling
 - 📄 Published and presented research at IBCAST 2025
-- 🎯 Interested in aerospace engineering, computational design, machine learning for engineering, and PhD research opportunities
+- 📊 Interested in engineering analytics, machine learning, predictive maintenance, and aerospace research
 
 ## 🛠️ Technical Interests
 
 - Computational Fluid Dynamics  
 - UAV Design and Optimization  
 - AI-Driven Surrogate Modeling  
-- Aerodynamics  
+- Predictive Maintenance  
+- Bearing Fault Detection  
+- Turbofan Engine RUL Prediction  
+- Data Analytics  
+- Supply Chain Analytics  
 - CAD/CAE Simulation  
 - Mechanical Design  
 - Research Writing  
 
-## 📌 Featured Work
+## 📌 Featured Projects
 
-### Blended Wing Body UAV Design and Optimization
+### 🛩️ AI-Driven BWB UAV CFD Optimization  
+Design, manufacturing, wind tunnel testing, CFD analysis, and AI-driven surrogate modeling of a Blended Wing Body UAV.  
+[View Project](https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization)
 
-Design, manufacturing, wind tunnel testing, CFD analysis, and AI-driven surrogate modeling of a Blended Wing Body UAV.
+### ✈️ Turbofan RUL Prediction Using NASA CMAPSS  
+Machine learning-based remaining useful life prediction for turbofan engines using the NASA CMAPSS dataset.  
+[View Project](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss)
 
-Key areas:
-- UAV conceptual and aerodynamic design
-- CFD-based performance evaluation
-- Wind tunnel validation
-- AI-driven surrogate modeling
-- Optimization of aerodynamic performance
+### ⚙️ Bearing Fault Detection  
+Fault detection project focused on identifying bearing health conditions using vibration/signal-based analysis.  
+[View Project](https://github.com/uns-haider96/bearing-fault-detection)
+
+### 📦 FMCG Supply Chain Analytics  
+Data analytics project focused on FMCG supply chain performance, insights, and decision support.  
+[View Project](https://github.com/uns-haider96/fmcg-supply-chain-analytics)
 
 ## 📫 Connect With Me
 
-- GitHub: [@shahuns963](https://github.com/shahuns963)
+- GitHub: [@uns-haider96](https://github.com/uns-haider96)
 - Email: shahuns963@gmail.com
+
+---
+
+## 🔗 See My Projects
+
+You can explore my complete project portfolio here:  
+[github.com/uns-haider96?tab=repositories](https://github.com/uns-haider96?tab=repositories)
