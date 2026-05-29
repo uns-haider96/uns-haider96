@@ -7,7 +7,8 @@ Mechanical Engineering graduate with interests in UAV design, CFD, AI-driven sur
 - 🎓 BSc Mechanical Engineering, COMSATS University Islamabad, Wah Campus
 - 🛩️ Final year project focused on Blended Wing Body UAV design and optimization
 - 🔬 Experience with CFD analysis, wind tunnel testing, UAV manufacturing, and AI-based surrogate modeling
-- 📄 Published and presented research at IBCAST 2025
+- 📄 Published research at Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering
+- 📄 Presented research at International Bhurban Conference on Applied Sciences & Technology (IBCAST) 2025
 - 📊 Interested in engineering analytics, machine learning, predictive maintenance, and aerospace research
 
 ## 🛠️ Technical Interests
