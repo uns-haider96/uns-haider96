@@ -28,26 +28,13 @@ M. S. Naseem, **M. U. H. Shah**, et al. *Proceedings of the IMechE, Part G: Jour
 ## 📌 Featured Projects
 
 **🌀 [When Can a Data-Driven Surrogate Be Trusted Inside a Shape-Optimization Loop? — AirfRANS](https://github.com/uns-haider96/airfrans-surrogate-optimization)**
-Neural surrogates trained on the AirfRANS steady-RANS benchmark (200-case *scarce* split), used to
-drive airfoil shape optimization, with an explicit study of when the resulting optimum holds up.
-- **Shape information is what lets a surrogate rank designs.** Adding a 13-number global shape
-  descriptor to a pointwise MLP cut surface-pressure error 15× (MSE 0.967 → 0.063) and raised lift
-  rank correlation to 0.998.
-- **Drag cannot be recovered from predicted fields.** 68% of drag is viscous, set by the velocity
-  gradient across a ~2 µm first cell; median drag error 1715%, rank correlation 0.075. Every
-  published model on this benchmark fails the same way. Regressing forces directly instead, a
-  Gaussian process reaches 0.3% median drag error and 0.999 rank correlation.
-- **Both search strategies find the surrogate's optimum.** Bayesian optimization (50 evaluations)
-  and gradient-based search via automatic differentiation through the network and the camber-line
-  parameterization both land within 0.33% of a 200,000-point reference; AD sensitivities match
-  central finite differences to seven decimals.
-- **The optimum's performance is robust; its location is not.** Retraining on 80% subsets holds L/D
-  at 93.8 ± 1.6 but moves the optimum 14–20% of the design range. At a separated-flow case the
-  surrogate under-predicts drag by 80% while reporting high confidence — 139× its own predicted
-  uncertainty.
-- Also found and removed 88 leaked cases in the benchmark's own published evaluation splits.
-
-`Python · PyTorch · scikit-learn · Gaussian processes · automatic differentiation`
+Neural surrogates trained on the AirfRANS steady-RANS benchmark, used to drive airfoil shape
+optimization, with an explicit study of when the resulting optimum holds up. A global shape
+descriptor cut surface-pressure error 15× and raised lift rank correlation to 0.998; Gaussian-process
+force surrogates reached 0.3% median drag error where field-integrated drag proved unrankable.
+Bayesian and AD-gradient search both landed within 0.33% of the reference optimum, but resampling
+moved that optimum 14–20% of the design range, and predicted uncertainty under-estimated error 139×
+at a separated-flow regime change. `Python · PyTorch · scikit-learn · Gaussian processes`
 
 **✈️ [Turbofan RUL Prediction: NASA C-MAPSS](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss)**
 ML pipeline for remaining-useful-life prediction (RMSE 17.97 on FD001); leakage-safe rolling-window
