@@ -29,12 +29,13 @@ M. S. Naseem, **M. U. H. Shah**, et al. *Proceedings of the IMechE, Part G: Jour
 
 **🌀 [When Can a Data-Driven Surrogate Be Trusted Inside a Shape-Optimization Loop? — AirfRANS](https://github.com/uns-haider96/airfrans-surrogate-optimization)**
 Neural surrogates trained on the AirfRANS steady-RANS benchmark, used to drive airfoil shape
-optimization, with an explicit study of when the resulting optimum holds up. A global shape
-descriptor cut surface-pressure error 15× and raised lift rank correlation to 0.998; Gaussian-process
-force surrogates reached 0.3% median drag error where field-integrated drag proved unrankable.
-Bayesian and AD-gradient search both landed within 0.33% of the reference optimum, but resampling
-moved that optimum 14–20% of the design range, and predicted uncertainty under-estimated error 139×
-at a separated-flow regime change. `Python · PyTorch · scikit-learn · Gaussian processes`
+optimization and to test when the resulting optimum holds up.
+- Global shape descriptor cut surface-pressure error **15×**; lift rank correlation **0.998**
+- Gaussian-process force surrogates hit **0.3%** median drag error, where field-integrated drag proved unrankable
+- Bayesian and AD-gradient search both landed within **0.33%** of the reference optimum
+- Resampling moved that optimum **14–20%** of the design range, and predicted uncertainty under-estimated error **139×** at a separated-flow regime change
+
+`Python · PyTorch · scikit-learn · Gaussian processes`
 
 **✈️ [Turbofan RUL Prediction: NASA C-MAPSS](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss)**
 ML pipeline for remaining-useful-life prediction (RMSE 17.97 on FD001); leakage-safe rolling-window
