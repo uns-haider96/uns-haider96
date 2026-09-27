@@ -15,7 +15,8 @@ surrogate reproduces a flow field, but whether the design it recommends can be t
 - **ML for engineering data**: predictive maintenance, fault diagnosis on benchmark datasets
 
 ## 🛠️ Tools
-`Python` · `PyTorch` · `scikit-learn` · `NumPy` · `Pandas` · `Matplotlib` · `Git` · `ANSYS Fluent`
+**Computation:** `Python` · `PyTorch` · `scikit-learn` · `NumPy` · `Pandas` · `Matplotlib` · `Git` · `ANSYS Fluent`  
+**Design & experiment:** CAD modelling · FEA · carbon-fibre composite fabrication · wind-tunnel testing
 
 ## 📄 Publication
 **Design and Optimization of a Blended-Wing-Body UAV using AI-Driven Surrogate Modeling and CFD Analysis**
@@ -37,17 +38,22 @@ optimization and to test when the resulting optimum holds up.
 
 `Python · PyTorch · scikit-learn · Gaussian processes`
 
+**🛩️ [Blended-Wing-Body UAV: CFD, Surrogate Optimization, Prototype & Wind Tunnel](https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization)**
+Research portfolio for the published study above, taken from concept to a tested physical prototype.
+- ANSYS Fluent RANS (k-ω SST) on a 1 m BWB; Latin-hypercube design of experiments over wing and winglet geometry
+- Gaussian-process surrogate + Expected-Improvement Bayesian optimization: L/D **9.9 → 12.2 (~23%)**
+- Optimized airframe built in carbon-fibre/epoxy using 3D-printed matched moulds, then force-and-moment tested in a wind tunnel
+- Presented at IBCAST 2025; published in IMechE Part G (2026)
+
+`ANSYS Fluent · Python · Gaussian processes · Composites · Wind tunnel`
+
 **✈️ [Turbofan RUL Prediction: NASA C-MAPSS](https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss)**
-ML pipeline for remaining-useful-life prediction (RMSE 17.97 on FD001); leakage-safe rolling-window
-features, K-Means degradation profiling. `Python · scikit-learn`
+Remaining-useful-life prediction on FD001: Random Forest with per-engine rolling features (RMSE 17.97,
+in line with published classical baselines), plus K-Means degradation profiling. `Python · scikit-learn`
 
 **⚙️ [Bearing Fault Detection: CWRU](https://github.com/uns-haider96/bearing-fault-detection)**
-End-to-end classifier for 10 bearing-fault conditions from 48 kHz vibration signals; ~97% accuracy
-under stratified 5-fold CV. `Python · scikit-learn`
-
-**🛩️ [BWB UAV: CFD + Surrogate Optimization](https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization)**
-Research portfolio for the published study above: CFD, Gaussian-process surrogate, Bayesian
-optimization, FEA, and wind-tunnel validation of a blended-wing-body UAV.
+Random-forest classifier for 10 bearing-fault conditions from 48 kHz vibration statistics: 96.4% in
+5-fold CV, 92.2% on a held-out split, with an analysis of where time-domain features fail. `Python · scikit-learn`
 
 ## 🎓 Currently
 Completing a research cohort on **machine learning for fluid dynamics** (neural operators, PINNs,
