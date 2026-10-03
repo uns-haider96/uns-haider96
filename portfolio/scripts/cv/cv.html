@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Muhammad Uns Haider Shah — CV</title>
+<style>
+  @font-face { font-family: "Source Serif 4"; font-weight: 200 900; font-style: normal;
+    src: url("../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 200 900; font-style: italic;
+    src: url("../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900;
+    src: url("../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2"); }
+
+  @page { size: A4; margin: 11.5mm 14mm 11mm 14mm; }
+  :root { --ink: #15202b; --ink2: #36414c; --accent: #1d4f7a; --rule: #c9c5bb; }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: "Source Serif 4", Georgia, serif; font-size: 9.35pt; line-height: 1.33; color: var(--ink); }
+  a { color: inherit; text-decoration: none; }
+  header { text-align: center; margin-bottom: 7pt; }
+  h1 { font-size: 19pt; font-weight: 600; letter-spacing: 0.2pt; margin: 0; }
+  .tag { font-family: Inter, sans-serif; font-size: 8.4pt; color: var(--accent); margin-top: 2pt; letter-spacing: 0.2pt; }
+  .contact { font-family: Inter, sans-serif; font-size: 8.1pt; color: var(--ink2); margin-top: 3pt; }
+  .contact a { color: var(--accent); }
+  h2 { font-family: Inter, sans-serif; font-size: 8.4pt; font-weight: 650; text-transform: uppercase; letter-spacing: 1.1pt;
+       color: var(--accent); border-bottom: 0.7pt solid var(--rule); padding-bottom: 1.5pt; margin: 7.5pt 0 3.5pt; break-after: avoid; }
+  .entry { margin-bottom: 4.5pt; break-inside: avoid; }
+  .row { display: flex; justify-content: space-between; gap: 10pt; align-items: baseline; }
+  .t { font-weight: 600; }
+  .d { font-family: Inter, sans-serif; font-size: 8pt; color: var(--ink2); white-space: nowrap; }
+  .sub { font-style: italic; color: var(--ink2); }
+  .tools { font-family: Inter, sans-serif; font-size: 7.6pt; color: var(--ink2); }
+  .tools a { color: var(--accent); }
+  ul { margin: 1.5pt 0 0; padding-left: 11pt; }
+  li { margin: 0.8pt 0; }
+  li::marker { color: var(--accent); }
+  p { margin: 0; }
+  .me { font-weight: 650; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0 14pt; }
+  .skill b { font-weight: 600; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Muhammad Uns Haider Shah</h1>
+  <div class="tag">Scientific Machine Learning · Computational Fluid Dynamics · Aerodynamic Design Optimization · Diagnostics &amp; Prognostics</div>
+  <div class="contact">
+    <a href="mailto:shahuns963@gmail.com">shahuns963@gmail.com</a> ·
+    <a href="https://www.linkedin.com/in/muhammad-uns-haider-shah/">linkedin.com/in/muhammad-uns-haider-shah</a> ·
+    <a href="https://github.com/uns-haider96">github.com/uns-haider96</a> · Islamabad, Pakistan
+  </div>
+</header>
+
+<h2>Research Interests</h2>
+<p>Scientific machine learning for engineering systems: surrogate and reduced-order modeling, Bayesian optimization, and neural-operator and physics-informed methods for aerodynamic design and flow-field prediction; the trustworthiness of predicted uncertainty in data-driven models; and machine-learning diagnostics and prognostics for rotating machinery and propulsion systems. Seeking a fully funded, thesis-based graduate position (MS / MASc) in mechanical or aerospace engineering beginning Fall 2027.</p>
+
+<h2>Publications</h2>
+<div class="entry">
+  <p class="t">Design and Optimization of a Blended-Wing-Body UAV using AI-Driven Surrogate Modeling and CFD Analysis</p>
+  <p>M. S. Naseem, <span class="me">M. U. H. Shah</span>, et al. <span class="sub">Proceedings of the IMechE, Part G: Journal of Aerospace Engineering</span> (SCI / Scopus-indexed), 2026. DOI: <a href="https://doi.org/10.1177/09544100261447561">10.1177/09544100261447561</a></p>
+  <ul>
+    <li>My contribution: developed the machine-learning surrogate and optimization pipeline end to end. Built a Gaussian Process Regression surrogate with Expected-Improvement Bayesian optimization over DOE-structured RANS CFD data to optimize wing planform, airfoil, winglet and twist; the surrogate’s uncertainty estimates drove adaptive sampling. Cruise lift-to-drag ratio rose from 9.9 to 12.2 (about 23%) in about 80 CFD evaluations.</li>
+    <li>Conducted the 3D Reynolds-averaged Navier–Stokes CFD (ANSYS Fluent, k-ω SST) that generated the aerodynamic training data and verified the optimized configuration.</li>
+    <li>The wider team project also spanned CAD, finite-element analysis, carbon-fibre composite prototyping and wind-tunnel testing.</li>
+  </ul>
+</div>
+
+<h2>Conference Presentations</h2>
+<div class="entry">
+  <div class="row"><span class="t">Oral Presentation, IBCAST 2025</span><span class="d">Aug 2025</span></div>
+  <p>22nd International Bhurban Conference on Applied Sciences &amp; Technology, Fluid Dynamics track. Presented the blended-wing-body UAV optimization work; camera-ready paper submitted to the proceedings (IEEE Xplore), awaiting publication.</p>
+</div>
+
+<h2>Education</h2>
+<div class="entry">
+  <div class="row"><span class="t">B.Sc. in Mechanical Engineering</span><span class="d">Sep 2021 – Jul 2025</span></div>
+  <div class="row"><span class="sub">COMSATS University Islamabad (Wah Campus), Pakistan</span><span class="d">HEC- and PEC-recognized</span></div>
+  <ul>
+    <li>Relevant coursework: Computational Fluid Dynamics (A–), Heat &amp; Mass Transfer (A–), CAD/CAM (A–), Instrumentation &amp; Measurement (A–), Maintenance Engineering (A), Mechanisms &amp; Mechanical Vibrations Lab (A), Numerical Computations (B+), Fluid Mechanics I &amp; II, Finite Element Analysis, Mechanical Vibrations, Control Engineering, Machine Design, IC Engines.</li>
+  </ul>
+</div>
+
+<h2>Research Projects: Aerodynamic Design &amp; Trustworthy Surrogates</h2>
+<div class="entry">
+  <div class="row"><span class="t">When Can a Data-Driven Surrogate Be Trusted? Airfoil Shape Optimization on AirfRANS</span><span class="d">Aug – Sep 2026</span></div>
+  <p class="tools">Python, PyTorch, scikit-learn, Gaussian processes · <a href="https://github.com/uns-haider96/airfrans-surrogate-optimization">Code</a></p>
+  <ul>
+    <li>Trained neural surrogates on 2D steady RANS solutions over NACA airfoils (Re 2–6 M): a global shape descriptor cut surface-pressure error 15-fold and raised lift rank correlation to 0.998; showed field-integrated drag is unrankable (rank correlation 0.075) because the ~2 µm near-wall layer is unresolved.</li>
+    <li>Direct force surrogates on 200 held-out simulations: the Gaussian process reached 0.3% median drag error with 91% of cases inside its ±2σ band, against 55% for a neural ensemble.</li>
+    <li>Drove shape optimization with the surrogate: Bayesian and automatic-differentiation gradient search both reached within 0.33% of a 200,000-point reference optimum, but retraining moved the optimum by 14–20% of the design range, and predicted uncertainty under-estimated error 139× at a separated-flow regime change.</li>
+  </ul>
+</div>
+
+<h2>Research Projects: Machine Learning for Machinery Health</h2>
+<div class="entry">
+  <div class="row"><span class="t">Turbofan Remaining-Useful-Life Prediction · NASA C-MAPSS</span><span class="d">Mar – May 2026</span></div>
+  <p class="tools">Python, scikit-learn · <a href="https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss">Code</a></p>
+  <ul>
+    <li>Random-Forest RUL model on FD001 reached RMSE 17.97 / MAE 12.74 cycles (14.1% RMSE and 22.3% MAE improvement over a linear baseline), in line with published classical and early deep-learning baselines.</li>
+    <li>Leakage-safe, per-engine 5-cycle rolling features turned sensor 4 from 0.01 to 0.63 feature importance; K-Means (k = 3) on PCA-reduced profiles separated distinct degradation pathways.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="t">Rolling-Bearing Fault Diagnosis · CWRU Vibration Dataset</span><span class="d">Oct – Dec 2025</span></div>
+  <p class="tools">Python, scikit-learn · <a href="https://github.com/uns-haider96/bearing-fault-detection">Code</a></p>
+  <ul>
+    <li>Classified 10 bearing conditions from 48 kHz drive-end vibration (9 time-domain features over 2048-point windows): 96.4% ± 0.8% under stratified 5-fold cross-validation and 92.2% on a held-out split.</li>
+    <li>Traced the remaining errors to fault classes whose kurtosis stays near the healthy level, and documented the optimism of window-level splits and the recording-offset shortcut in the mean feature.</li>
+  </ul>
+</div>
+
+<h2>Professional Experience</h2>
+<div class="entry">
+  <div class="row"><span class="t">Management Trainee Officer (Engineering)</span><span class="d">Aug 2026 – Present</span></div>
+  <p class="sub">DYNTEK Engineering (Pvt) Ltd, Islamabad</p>
+  <ul>
+    <li>Computational design and analysis for aerospace systems, spanning CAD geometry development, CAE and finite-element analysis, and CFD simulation; applying scientific machine learning and surrogate modeling to simulation-based design.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="t">CMMS Engineer, Asset Reliability &amp; Predictive Maintenance</span><span class="d">Jan – Aug 2026</span></div>
+  <p class="sub">Invotyx (ADNOC Programme), Islamabad</p>
+  <ul>
+    <li>Built and validated ISO 14224-compliant asset hierarchies and SAP PM master data for rotating and static equipment, supporting reliability-centred and predictive-maintenance workflows.</li>
+    <li>Extracted technical attributes from P&amp;IDs and vendor datasheets; enforced CMMS data-governance rules across live multi-discipline asset registers.</li>
+  </ul>
+</div>
+<div class="entry">
+  <div class="row"><span class="t">Aerospace B1 Engineering Intern, Line Maintenance</span><span class="d">Jul – Aug 2024</span></div>
+  <p class="sub">Pakistan International Airlines (PIA)</p>
+  <ul>
+    <li>Performed transit, daily and cabin checks across ATR-42/72, A320 and B-777 fleets; studied AMM/MEL/TechLog systems and glass-cockpit avionics.</li>
+  </ul>
+</div>
+
+<h2>Specialized Training</h2>
+<div class="entry">
+  <div class="row"><span class="t">Machine Learning and AI for Fluid Dynamics, FlowThermoLab</span><span class="d">Jun 2026 – present</span></div>
+  <p>Certification cohort led by Prof. Ricardo Vinuesa: turbulence prediction, reduced-order modeling (POD/DMD, autoencoders), flow control and optimization, transformers for flow fields, physics-informed neural networks and neural operators (FNO, DeepONet), in Python and PyTorch.</p>
+</div>
+<div class="entry">
+  <div class="row"><span class="t">Professional Data Analytics Certification, Institute of Emerging Careers</span><span class="d">Nov 2025 – May 2026</span></div>
+  <p>Applied data analysis with Excel, SQL, Power BI and Python.</p>
+</div>
+
+<h2>Engineering &amp; Fabrication Projects</h2>
+<ul>
+  <li><b>CFRP composite manufacturing:</b> designed 3D-printed split moulds (SolidWorks) and produced the BWB-UAV airframe skins in carbon-fibre/epoxy by vacuum-bag resin infusion; the prototype was then force-and-moment tested in a wind tunnel.</li>
+  <li><b>Shell-and-tube heat exchanger:</b> designed (LMTD / Dittus–Boelter / Bell–Delaware), fabricated and tested a 7 ft baffled unit; the measured energy balance agreed with the prediction to within 5%.</li>
+</ul>
+
+<h2>Technical Skills</h2>
+<div class="skill">
+  <p><b>Scientific ML &amp; surrogate modeling:</b> Gaussian Process Regression, Bayesian optimization, Design of Experiments, uncertainty quantification and calibration, neural ensembles, automatic differentiation for design sensitivities; PINNs and neural operators (in development).</p>
+  <p><b>Machine learning &amp; programming:</b> Python (PyTorch, scikit-learn, pandas, NumPy, Matplotlib/Seaborn); Random Forests, K-Means/PCA, feature engineering, cross-validation.</p>
+  <p><b>Computational &amp; CAE:</b> ANSYS Fluent (CFD), ANSYS Mechanical (FEA), SolidWorks, AutoCAD.</p>
+  <p><b>Signals, prognostics &amp; reliability:</b> vibration health indicators (RMS, kurtosis, crest factor), degradation feature engineering, RUL regression; ISO 14224, SAP PM master data.</p>
+  <p><b>Tools:</b> Git/GitHub, LaTeX, SQL (MySQL), Power BI (DAX), Arduino (C++).</p>
+</div>
+
+<h2>Leadership, Awards &amp; Affiliations</h2>
+<div class="entry">
+  <div class="row"><span class="t">Planning Head &amp; Treasurer, ASME COMSATS Wah Student Section</span><span class="d">Jul 2023 – Sep 2025</span></div>
+  <ul>
+    <li>Part of the leadership team of a 100+ member section: ran workshops, seminars and inter-university competitions; owned the budget and financial reporting. Voted Best Member of the Year, 2023–24.</li>
+    <li>Affiliations: Member (Early Career), ASME (2026–present); student member 2023–2025 of AIAA, RAeS, IMechE, ASME and ASEE. Registered Engineer, Pakistan Engineering Council.</li>
+  </ul>
+</div>
+</body>
+</html>
