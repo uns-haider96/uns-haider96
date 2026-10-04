@@ -86,8 +86,8 @@
   <p class="tools">Python, PyTorch, scikit-learn, Gaussian processes · <a href="https://github.com/uns-haider96/airfrans-surrogate-optimization">Code</a></p>
   <ul>
     <li>Trained neural surrogates on 2D steady RANS solutions over NACA airfoils (Re 2–6 M): a global shape descriptor cut surface-pressure error 15-fold and raised lift rank correlation to 0.998; showed field-integrated drag is unrankable (rank correlation 0.075) because the ~2 µm near-wall layer is unresolved.</li>
-    <li>Direct force surrogates on 200 held-out simulations: the Gaussian process reached 0.3% median drag error with 91% of cases inside its ±2σ band, against 55% for a neural ensemble.</li>
-    <li>Drove shape optimization with the surrogate: Bayesian and automatic-differentiation gradient search both reached within 0.33% of a 200,000-point reference optimum, but retraining moved the optimum by 14–20% of the design range, and predicted uncertainty under-estimated error 139× at a separated-flow regime change.</li>
+    <li>Direct force surrogates on 200 held-out simulations: the Gaussian process reached 0.3% median drag error with 91% of log-drag predictions inside its ±2σ band, against 55% for a neural ensemble.</li>
+    <li>Drove shape optimization with the surrogate: Bayesian and automatic-differentiation gradient search both reached within 0.33% of a 200,000-point reference optimum, but retraining moved the optimum by 14–20% of the design range, and predicted uncertainty under-estimated error 139× at a likely separated-flow case.</li>
   </ul>
 </div>
 
