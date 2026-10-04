@@ -94,7 +94,7 @@ export default function Home() {
             </div>
             <figcaption className="mt-3 px-1 text-xs leading-relaxed text-ink-3">
               <span className="font-mono uppercase tracking-wider text-accent">Plate.</span> Top: RANS
-              velocity and pressure fields for the separated-flow case (left) where the surrogate&apos;s
+              velocity and pressure fields for the worst-predicted case (left), likely separated, where the surrogate&apos;s
               drag error reached 139× its predicted uncertainty, beside a well-predicted case (AirfRANS
               study). Bottom: the carbon-fibre BWB UAV
               prototype in the wind tunnel, and a root-section Mach contour from its Fluent CFD.
