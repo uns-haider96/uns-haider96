@@ -88,7 +88,7 @@ export const projects: Project[] = [
       { value: "15×", label: "lower surface-pressure error from a global shape descriptor" },
       { value: "0.3 %", label: "median drag error, direct GP force surrogate" },
       { value: "0.33 %", label: "BO and AD-gradient search vs. reference optimum" },
-      { value: "139×", label: "error vs. predicted σ at a separated-flow regime change" },
+      { value: "139×", label: "error vs. predicted σ at a likely flow-regime change" },
     ],
     role: "Sole author: data pipeline, all models, optimization and the trust study.",
     sections: [
@@ -175,7 +175,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "p",
-            text: "Integrating predicted fields to forces gives a median lift error of 2.6 % but a median drag error of 1715 %, with a drag rank correlation of 0.075. The cause is physical: viscous drag is 68 % of total drag and depends on the velocity gradient across a first cell about 2 µm thick, which a smooth network cannot resolve. Enforcing exact no-slip at the wall changed nothing. Pressure drag fails separately, as a small residual of large, nearly cancelling forces. Every model in the published benchmark fails on drag in the same way.",
+            text: "Integrating predicted fields to forces gives a median lift error of 2.6 % but a median drag error of 1715 %, with a drag rank correlation of 0.075. The cause is physical: viscous drag is 68 % of total drag and depends on the velocity gradient across a first cell about 2 µm thick, which a smooth network cannot resolve. Enforcing exact no-slip at the wall changed nothing. Pressure drag fails separately, as a small residual of large, nearly cancelling forces. Every model in the published benchmark also fails to rank drag, although the size of the drag error here is four to five times larger than theirs.",
           },
           {
             type: "figure",
@@ -203,7 +203,7 @@ export const projects: Project[] = [
               ["Drag rank correlation", "0.075", "0.998", "0.999"],
               ["L/D rank correlation", "0.883", "0.997", "0.999"],
               ["Drag ordering, distinguishable pairs", "0.66", "0.995", "1.000"],
-              ["Within ±2σ of predicted uncertainty", "–", "55 %", "91 %"],
+              ["Log-drag within ±2σ of predicted uncertainty", "–", "55 %", "91 %"],
             ],
             note: "The Gaussian process is both more accurate and better calibrated; the ensemble's spread under-estimates its own error.",
           },
@@ -284,7 +284,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "p",
-            text: "Retraining the surrogate on eight random 80 % subsets and repeating the optimization: L/D at the optimum is 93.8 ± 1.6 and lift-constrained drag 0.0099 ± 0.0001, but the optimal design itself moves by roughly 14–20 % of the design range. Thickness sat on its 12 % bound in every run. Two surrogates trained on the same data disagree by about 4 % on the value of a given optimum, while the optimizers compete over differences of 0.3 %. The surrogate identifies a family of near-equivalent designs, not a unique optimum.",
+            text: "Retraining the surrogate on eight random 80 % subsets and repeating the optimization moves the optimal design by roughly 14–20 % of the design range, and thickness sat on its 12 % bound in every run. Each retrained surrogate rates its own optimum at L/D 93.8 ± 1.6, but rating one fixed design the retrained surrogates give 91.9 ± 4.2, from 83.6 to 96.0, while the optimizers compete over differences of 0.3 %. The surrogate identifies a family of candidate designs, not a unique optimum.",
           },
           {
             type: "table",
@@ -304,14 +304,14 @@ export const projects: Project[] = [
               height: 675,
               alt: "Bar charts of actual drag error and predicted uncertainty inside and outside the training band",
               caption:
-                "Actual CD error (blue) and predicted standard deviation (orange) grow together with distance from the training band, so predicted uncertainty is a usable stopping signal here.",
+                "Actual CD error (blue) and predicted standard deviation (orange). For angle of attack they grow together, so predicted uncertainty is a usable stopping signal; for Reynolds number the error triples while the predicted uncertainty stays flat.",
               source: "figures/phase4_controlled_extrapolation.png",
             },
           },
           {
             type: "callout",
             title: "The decisive exception",
-            text: "The worst-predicted case in the dataset is a 5.2 %-thick airfoil at −4.4° whose flow separates along the lower surface. Its drag is 4.1× the training median and 93 % pressure drag; the surrogate under-predicts it by 80 %, an error 139× its predicted uncertainty. Only 7 of 200 training cases lie in that region. A surrogate's confidence bounds its interpolation error; it cannot see a change of flow regime, because the inputs look ordinary.",
+            text: "The worst-predicted unseen case, a validation case, is a 5.2 %-thick airfoil at −4.4° whose velocity field shows a low-speed region along the whole lower surface, consistent with separation. Its drag is 4.1× the training median and 93 % pressure drag; the surrogate under-predicts it by 80 %, an error 139× its predicted uncertainty. Only six other cases among the 200 simulations are thinner than 8 % at negative incidence. A surrogate's confidence bounds part of its interpolation error; it cannot see a change of flow regime, because the inputs look ordinary.",
           },
           {
             type: "figure",
@@ -320,9 +320,9 @@ export const projects: Project[] = [
               src: "/figures/airfrans/phase4_failure_case.png",
               width: 2209,
               height: 1096,
-              alt: "Velocity and pressure fields for the separated failure case and a well-predicted case",
+              alt: "Velocity and pressure fields for the worst-predicted case and a well-predicted case",
               caption:
-                "Left: the failure case (α −4.4°, 5.2 % thickness) with lower-surface separation. Right: a well-predicted case (α −0.9°, 19.8 % thickness) for comparison.",
+                "Left: the failure case (α −4.4°, 5.2 % thickness) with a low-speed region along the lower surface, consistent with separation. Right: a well-predicted case (α −0.9°, 19.8 % thickness) for comparison.",
               source: "figures/phase4_failure_case.png",
             },
           },
@@ -334,7 +334,7 @@ export const projects: Project[] = [
         blocks: [
           {
             type: "p",
-            text: "A cheap data-driven surrogate narrows a design space quickly; it cannot certify the result. Surrogate-to-surrogate disagreement and the movement of the optimum under resampling both exceed the gains the optimizer is chasing, and confidence collapses where the flow physics changes rather than where the inputs become unusual. The defensible use is mixed-fidelity: surrogate-based exploration to identify a family of candidates, followed by high-fidelity verification, with adjoint methods as the right tool for high-dimensional gradient refinement.",
+            text: "A cheap data-driven surrogate narrows a design space quickly; it cannot certify the result. Surrogate-to-surrogate disagreement and the movement of the optimum under resampling both exceed the gains the optimizer is chasing, predicted confidence tracks extrapolation in incidence but not in Reynolds number, and confidence collapses where the flow physics changes rather than where the inputs become unusual. The defensible use is mixed-fidelity: surrogate-based exploration to identify a family of candidates, followed by high-fidelity verification, with adjoint methods as the right tool for high-dimensional gradient refinement.",
           },
         ],
       },
