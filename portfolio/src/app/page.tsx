@@ -240,7 +240,7 @@ export default function Home() {
                   <p className="font-mono text-xs text-ink-3">{e.period}</p>
                 </div>
                 <p className="text-sm text-accent">
-                  {e.org} · {e.location}
+                  {[e.org, e.location].filter(Boolean).join(" · ")}
                 </p>
                 <ul className="mt-3 space-y-1.5 pl-5 text-[0.95rem] leading-relaxed text-ink-2 marker:text-ink-3 [list-style-type:square]">
                   {e.points.map((pt) => (
