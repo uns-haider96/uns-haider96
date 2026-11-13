@@ -131,13 +131,13 @@ export const training = [
 
 export const experience = [
   {
-    role: "Management Trainee Officer (Engineering)",
-    org: "DYNTEK Engineering (Pvt) Ltd",
-    location: "Islamabad",
+    role: "Independent Researcher",
+    org: "",
+    location: "Islamabad, Pakistan",
     period: "Aug 2026 – present",
     points: [
-      "Computational design and analysis for aerospace systems, spanning CAD geometry development, CAE and finite-element analysis, and CFD simulation.",
-      "Applying scientific machine learning and surrogate modeling to simulation-based design, prediction and design-space exploration.",
+      "Self-directed research on the reliability of machine-learning surrogates for engineering design: uncertainty calibration, extrapolation, and the stability of surrogate-predicted optima.",
+      "Machine learning for CFD: neural and Gaussian-process surrogates trained on RANS simulations (AirfRANS benchmark) to drive airfoil shape optimization; code and technical write-up public on GitHub.",
     ],
   },
   {
