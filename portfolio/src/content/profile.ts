@@ -134,7 +134,7 @@ export const experience = [
     role: "Independent Researcher",
     org: "",
     location: "Islamabad, Pakistan",
-    period: "Jul 2025 – present",
+    period: "Oct 2025 – present",
     points: [
       "Self-directed research on the reliability of machine-learning surrogates for engineering design: uncertainty calibration, extrapolation, and the stability of surrogate-predicted optima.",
       "Machine learning for CFD: neural and Gaussian-process surrogates trained on RANS simulations (AirfRANS benchmark) to drive airfoil shape optimization; code and technical write-up public on GitHub.",
