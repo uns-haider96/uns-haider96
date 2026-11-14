@@ -131,6 +131,16 @@ export const training = [
 
 export const experience = [
   {
+    role: "Management Trainee Officer (Engineering)",
+    org: "DynTek Engineering Pvt Ltd",
+    location: "Islamabad",
+    period: "Aug 2026 – present",
+    points: [
+      "Computational design and analysis for aerospace systems, spanning CAD geometry development, CAE and finite-element analysis, and CFD simulation.",
+      "Applying scientific machine learning and surrogate modeling to simulation-based design, prediction and design-space exploration.",
+    ],
+  },
+  {
     role: "Independent Researcher",
     org: "",
     location: "Islamabad, Pakistan",
