@@ -142,22 +142,26 @@ export function CaseStudyBody({ project }: { project: Project }) {
     <div className="space-y-16">
       {project.sections.map((section, s) => (
         <section key={section.id} id={section.id} className="scroll-mt-24">
-          <h2 className="mb-5 flex items-baseline gap-3 font-serif text-[1.45rem] font-semibold tracking-tight text-ink">
-            <span className="font-mono text-xs font-normal text-accent">{String(s + 1).padStart(2, "0")}</span>
-            {section.title}
-          </h2>
+          <div className="keep-with-next">
+            <h2 className="mb-5 flex items-baseline gap-3 font-serif text-[1.45rem] font-semibold tracking-tight text-ink">
+              <span className="font-mono text-xs font-normal text-accent">{String(s + 1).padStart(2, "0")}</span>
+              {section.title}
+            </h2>
+          </div>
           <div className="space-y-6">{section.blocks.map((b, i) => renderBlock(b, `${section.id}-${i}`))}</div>
         </section>
       ))}
 
       {project.limitations?.length ? (
         <section id="limitations" className="scroll-mt-24">
-          <h2 className="mb-5 flex items-baseline gap-3 font-serif text-[1.45rem] font-semibold tracking-tight text-ink">
-            <span className="font-mono text-xs font-normal text-accent">
-              {String(project.sections.length + 1).padStart(2, "0")}
-            </span>
-            Limitations
-          </h2>
+          <div className="keep-with-next">
+            <h2 className="mb-5 flex items-baseline gap-3 font-serif text-[1.45rem] font-semibold tracking-tight text-ink">
+              <span className="font-mono text-xs font-normal text-accent">
+                {String(project.sections.length + 1).padStart(2, "0")}
+              </span>
+              Limitations
+            </h2>
+          </div>
           <ul className="space-y-2 pl-5 text-[0.975rem] leading-[1.7] text-ink-2 marker:text-ink-3 [list-style-type:square]">
             {project.limitations.map((l) => (
               <li key={l} className="pl-1">{l}</li>

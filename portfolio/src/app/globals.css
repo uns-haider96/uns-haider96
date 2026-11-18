@@ -124,4 +124,16 @@ body {
   h3 {
     break-after: avoid;
   }
+  /* Keep a heading with the start of its content: the heading carries an
+     invisible block of reserved space it cannot be separated from, so it
+     moves to the next page whenever the content would not start below it. */
+  .keep-with-next {
+    break-inside: avoid;
+  }
+  .keep-with-next::after {
+    content: "";
+    display: block;
+    height: 10rem;
+    margin-bottom: -10rem;
+  }
 }
