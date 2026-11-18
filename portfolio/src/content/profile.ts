@@ -233,11 +233,12 @@ export const skills = [
 
 export const leadership = {
   role: "Planning Head & Treasurer",
-  org: "ASME COMSATS Wah Student Section",
-  period: "Jul 2023 – Sep 2025",
+  org: "ASME Student Section, COMSATS University Islamabad, Wah Campus",
+  period: "Sep 2023 – Jul 2025",
   points: [
-    "Part of the leadership team of a 100+ member section: ran an annual programme of workshops, seminars and inter-university competitions, and owned the budget and financial reporting.",
-    "Voted Best Member of the Year, 2023–24.",
+    "Planning Head (Sep 2023 – Jun 2024): drew up the section's programme of events and coordinated its delivery with the cabinet; Best Member of the Year 2023–24, chosen by the cabinet.",
+    "Treasurer (Jul 2024 – Jul 2025): managed the annual budget of about PKR 200,000, and wrote the three applications that won the section its ASME Student Community Grants (about USD 1,000).",
+    "One of an eleven-member cabinet for a section of about 110 members; the section received the ASME Student Section Achievement Award 2023–24 and was named in the ASME Recognition Program 2025.",
   ],
 };
 

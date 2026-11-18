@@ -1,0 +1,713 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Muhammad Uns Haider Shah | Research Portfolio</title>
+<!--
+  Print-first research portfolio (A4). Build with `npm run portfolio-pdf`.
+  Numbers and wording follow src/content/projects.ts and src/content/profile.ts,
+  which in turn follow the project repositories. Images under img/ are generated
+  from public/figures by scripts/build-portfolio-pdf.mjs.
+-->
+<style>
+  @font-face { font-family: "Source Serif 4"; font-weight: 200 900; font-style: normal;
+    src: url("../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Source Serif 4"; font-weight: 200 900; font-style: italic;
+    src: url("../../node_modules/@fontsource-variable/source-serif-4/files/source-serif-4-latin-wght-italic.woff2") format("woff2"); }
+  @font-face { font-family: "Inter"; font-weight: 100 900;
+    src: url("../../node_modules/@fontsource-variable/inter/files/inter-latin-wght-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Plex Mono"; font-weight: 400;
+    src: url("../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-400-normal.woff2") format("woff2"); }
+  @font-face { font-family: "Plex Mono"; font-weight: 500;
+    src: url("../../node_modules/@fontsource/ibm-plex-mono/files/ibm-plex-mono-latin-500-normal.woff2") format("woff2"); }
+
+  @page { size: A4; margin: 0; }
+  :root {
+    --ink: #15202b; --ink2: #36414c; --ink3: #6a737d; --rule: #d9d6cd; --rule2: #b9b5a9;
+    --paper: #f6f5f1; --sunken: #eeece6; --accent: #1d4f7a; --accent-soft: #e3ebf3; --signal: #b4472a;
+  }
+  * { box-sizing: border-box; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body { margin: 0; font-family: Inter, sans-serif; font-size: 8.7pt; line-height: 1.5; color: var(--ink2); }
+  a { color: var(--accent); text-decoration: none; }
+  p { margin: 0 0 2.4mm; }
+  ul { margin: 0 0 2.4mm; padding-left: 4mm; }
+  li { margin: 0 0 0.8mm; }
+  li::marker { color: var(--accent); }
+  strong { color: var(--ink); font-weight: 600; }
+
+  /* ------------------------------------------------------------ page frame */
+  .page { width: 210mm; height: 297mm; padding: 13mm 15mm 17mm; position: relative; overflow: hidden; break-after: page; background: #fff; }
+  .page:last-child { break-after: auto; }
+  .runhead { display: flex; justify-content: space-between; align-items: baseline; border-bottom: 0.6pt solid var(--rule);
+    padding-bottom: 1.6mm; margin-bottom: 5mm; font-family: "Plex Mono", monospace; font-size: 6.6pt; letter-spacing: 0.9pt;
+    text-transform: uppercase; color: var(--ink3); }
+  .runhead b { color: var(--accent); font-weight: 500; }
+  .foot { position: absolute; left: 15mm; right: 15mm; bottom: 8.5mm; display: flex; justify-content: space-between;
+    border-top: 0.6pt solid var(--rule); padding-top: 1.6mm; font-size: 6.6pt; color: var(--ink3); }
+  .foot .n { font-family: "Plex Mono", monospace; color: var(--ink); }
+
+  /* ------------------------------------------------------------ type */
+  .kicker { font-family: "Plex Mono", monospace; font-size: 6.8pt; letter-spacing: 1pt; text-transform: uppercase; color: var(--accent); margin: 0 0 1.5mm; }
+  h1 { font-family: "Source Serif 4", serif; font-weight: 600; font-size: 18.5pt; line-height: 1.12; letter-spacing: -0.2pt; color: var(--ink); margin: 0 0 3mm; }
+  h2 { font-family: "Source Serif 4", serif; font-weight: 600; font-size: 12.5pt; line-height: 1.2; color: var(--ink); margin: 4.5mm 0 2mm;
+    display: flex; gap: 2.5mm; align-items: baseline; }
+  h2 .num { font-family: "Plex Mono", monospace; font-weight: 400; font-size: 7pt; color: var(--accent); }
+  h3 { font-family: "Source Serif 4", serif; font-weight: 600; font-size: 10pt; color: var(--ink); margin: 0 0 1mm; }
+  .lede { font-size: 9.6pt; line-height: 1.5; color: var(--ink2); margin-bottom: 3mm; }
+  .quote { font-family: "Source Serif 4", serif; font-style: italic; font-size: 9.6pt; color: var(--ink); border-left: 1.4pt solid var(--accent);
+    padding-left: 3mm; margin: 0 0 3mm; }
+  .mono { font-family: "Plex Mono", monospace; }
+  .small { font-size: 7.6pt; color: var(--ink3); }
+  .links { font-size: 7.6pt; margin: 0 0 3.5mm; }
+  .links a { margin-right: 4mm; }
+  .links a::after { content: " \2197"; }
+
+  /* ------------------------------------------------------------ components */
+  .stats { display: grid; grid-template-columns: repeat(4, 1fr); border-top: 0.6pt solid var(--rule); border-bottom: 0.6pt solid var(--rule);
+    background: var(--paper); margin: 0 0 3.5mm; }
+  .stats div { padding: 2.2mm 2.5mm; }
+  .stats div + div { border-left: 0.6pt solid var(--rule); }
+  .stats .v { font-family: "Plex Mono", monospace; font-weight: 500; font-size: 12pt; color: var(--signal); line-height: 1.2; }
+  .stats .l { font-size: 6.8pt; line-height: 1.3; color: var(--ink3); margin-top: 0.6mm; }
+  .role { border: 0.6pt solid var(--rule); padding: 2mm 3mm; margin: 0 0 3.5mm; font-size: 8.2pt; }
+  .role .t { font-family: "Plex Mono", monospace; font-size: 6.4pt; letter-spacing: 0.9pt; text-transform: uppercase; color: var(--ink3); margin-right: 2mm; }
+  .tags { display: flex; flex-wrap: wrap; gap: 1.2mm; margin: 0 0 3mm; }
+  .tags span { font-family: "Plex Mono", monospace; font-size: 6.4pt; background: var(--sunken); padding: 0.5mm 1.6mm; color: var(--ink2); }
+  .flow { display: flex; flex-wrap: wrap; align-items: center; gap: 1.2mm; font-family: "Plex Mono", monospace; font-size: 6.6pt; margin: 0 0 3.5mm; }
+  .flow span.s { border: 0.6pt solid var(--rule2); padding: 0.8mm 1.8mm; color: var(--ink); }
+  .flow span.a { color: var(--accent); }
+  .callout { border-left: 1.6pt solid var(--signal); background: var(--paper); padding: 2.4mm 3.5mm; margin: 0 0 3mm; }
+  .callout .t { font-family: "Plex Mono", monospace; font-size: 6.6pt; letter-spacing: 1pt; text-transform: uppercase; color: var(--signal); margin-bottom: 1mm; }
+  .callout p:last-child { margin: 0; }
+  .limits { border-top: 0.6pt solid var(--rule); padding-top: 2mm; font-size: 7.6pt; color: var(--ink3); }
+  .limits .t { font-family: "Plex Mono", monospace; font-size: 6.4pt; letter-spacing: 0.9pt; text-transform: uppercase; color: var(--ink2); margin-bottom: 1mm; }
+  .limits ul { margin: 0; }
+  .limits li::marker { color: var(--ink3); }
+
+  /* ------------------------------------------------------------ figures & tables */
+  figure { margin: 0 0 3mm; break-inside: avoid; }
+  figure img { display: block; width: 100%; border: 0.6pt solid var(--rule); background: #fff; }
+  figure.crop img { object-fit: cover; }
+  /* fixed-height figure: the image keeps its aspect ratio and is centred */
+  figure.fit img { width: auto; max-width: 100%; margin: 0 auto; }
+  figcaption { font-size: 7pt; line-height: 1.4; color: var(--ink2); margin-top: 1.2mm; }
+  figcaption b { font-family: "Plex Mono", monospace; font-weight: 500; font-size: 6.4pt; letter-spacing: 0.6pt; color: var(--accent); margin-right: 1mm; }
+  .row { display: grid; gap: 4mm; align-items: start; }
+  .c2 { grid-template-columns: 1fr 1fr; }
+  .c3 { grid-template-columns: 1fr 1fr 1fr; }
+  .c32 { grid-template-columns: 3fr 2fr; }
+  .c23 { grid-template-columns: 2fr 3fr; }
+  .c11 { grid-template-columns: 1.15fr 0.85fr; }
+  table { width: 100%; border-collapse: collapse; font-size: 7.4pt; margin: 0 0 1.2mm; }
+  caption { caption-side: top; text-align: left; font-size: 7pt; color: var(--ink2); padding-bottom: 1.2mm; }
+  caption b { font-family: "Plex Mono", monospace; font-weight: 500; font-size: 6.4pt; letter-spacing: 0.6pt; color: var(--accent); margin-right: 1mm; }
+  th { text-align: left; font-weight: 600; color: var(--ink); background: var(--sunken); border-bottom: 0.8pt solid var(--rule2); padding: 1.1mm 1.6mm; white-space: nowrap; }
+  td { border-bottom: 0.5pt solid var(--rule); padding: 1mm 1.6mm; vertical-align: top; }
+  td + td { font-family: "Plex Mono", monospace; font-size: 7pt; white-space: nowrap; }
+  tr.hl td { background: var(--accent-soft); color: var(--ink); font-weight: 500; }
+  .tnote { font-size: 6.9pt; color: var(--ink3); margin: 0 0 3mm; }
+  .tblock { margin: 0 0 3mm; break-inside: avoid; }
+
+  /* ------------------------------------------------------------ cover */
+  .cover { padding: 0; }
+  .cover .band { background: var(--paper); border-bottom: 0.6pt solid var(--rule); padding: 20mm 18mm 10mm;
+    background-image: linear-gradient(rgba(29,79,122,.07) 0.5pt, transparent 0.5pt), linear-gradient(90deg, rgba(29,79,122,.07) 0.5pt, transparent 0.5pt);
+    background-size: 6mm 6mm; }
+  .cover h1 { font-size: 32pt; margin-bottom: 3mm; }
+  .cover .sub { font-size: 11pt; line-height: 1.45; color: var(--ink2); max-width: 150mm; margin: 0 0 5mm; }
+  .cover .seek { font-size: 8.6pt; color: var(--ink); border-left: 1.4pt solid var(--accent); padding-left: 3mm; max-width: 150mm; }
+  .cover .plate { display: grid; grid-template-columns: 1.55fr 1fr; gap: 3mm; padding: 7mm 18mm 0; }
+  .cover .plate img { width: 100%; height: 62mm; object-fit: cover; display: block; border: 0.6pt solid var(--rule); }
+  .cover .plate .r { display: grid; grid-template-rows: 1fr 1fr; gap: 3mm; }
+  .cover .plate .r img { height: 29.5mm; }
+  .cover .cap { padding: 1.5mm 18mm 0; font-size: 6.8pt; color: var(--ink3); }
+  .cover .facts { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; margin: 6mm 18mm 0; border-top: 0.6pt solid var(--rule); border-bottom: 0.6pt solid var(--rule); }
+  .cover .facts div { padding: 2.6mm 3mm; }
+  .cover .facts div + div { border-left: 0.6pt solid var(--rule); }
+  .cover .facts .k { font-family: "Plex Mono", monospace; font-size: 6.4pt; letter-spacing: 0.9pt; text-transform: uppercase; color: var(--accent); }
+  .cover .facts .v { font-size: 8pt; color: var(--ink); margin-top: 0.8mm; line-height: 1.35; }
+  .toc { margin: 6mm 18mm 0; }
+  .toc .k { font-family: "Plex Mono", monospace; font-size: 6.6pt; letter-spacing: 1pt; text-transform: uppercase; color: var(--ink3); margin-bottom: 1.5mm; }
+  .toc a { display: grid; grid-template-columns: 8mm 1fr auto; align-items: baseline; padding: 1.15mm 0; border-bottom: 0.5pt dotted var(--rule2); color: var(--ink); font-size: 8.6pt; }
+  .toc a .i { font-family: "Plex Mono", monospace; font-size: 6.8pt; color: var(--accent); }
+  .toc a .d { font-size: 7.2pt; color: var(--ink3); margin-left: 2mm; }
+  .toc a .p { font-family: "Plex Mono", monospace; font-size: 7.2pt; color: var(--ink2); }
+  .cover .contact { position: absolute; left: 18mm; right: 18mm; bottom: 10mm; display: flex; justify-content: space-between;
+    border-top: 0.6pt solid var(--rule); padding-top: 2mm; font-size: 7.6pt; }
+
+  /* ------------------------------------------------------------ profile page */
+  .cv h2 { margin-top: 3.6mm; font-size: 11pt; }
+  .cv .e { margin: 0 0 2.2mm; break-inside: avoid; }
+  .cv .e .h { display: flex; justify-content: space-between; gap: 3mm; }
+  .cv .e .h b { color: var(--ink); font-weight: 600; font-size: 8.4pt; }
+  .cv .e .h span { font-family: "Plex Mono", monospace; font-size: 6.8pt; color: var(--ink3); white-space: nowrap; }
+  .cv .e .o { color: var(--accent); font-size: 7.8pt; }
+  .cv ul { margin: 0.6mm 0 0; font-size: 7.9pt; }
+  .cv .skills { display: grid; grid-template-columns: 1fr 1fr; gap: 1.6mm 5mm; font-size: 7.7pt; }
+  .cv .skills .k { font-family: "Plex Mono", monospace; font-size: 6.2pt; letter-spacing: 0.8pt; text-transform: uppercase; color: var(--accent); }
+  .cw { display: grid; grid-template-columns: 1fr 1fr; gap: 0 5mm; font-size: 7.6pt; margin-top: 1mm; }
+  .cw span { display: flex; justify-content: space-between; border-bottom: 0.5pt dotted var(--rule2); padding: 0.4mm 0; }
+  .cw i { font-style: normal; font-family: "Plex Mono", monospace; font-size: 6.8pt; color: var(--ink); }
+</style>
+</head>
+<body>
+
+<!-- ================================================================== 1 COVER -->
+<section class="page cover">
+  <div class="band">
+    <p class="kicker">Research portfolio · Mechanical &amp; Aerospace Engineering</p>
+    <h1>Muhammad Uns Haider Shah</h1>
+    <p class="sub">Surrogate modeling and Bayesian optimization for aerodynamic design, and machine learning for the diagnostics and prognostics of rotating machinery and propulsion systems.</p>
+    <p class="seek">Seeking a fully funded, thesis-based graduate position (MS / MASc) in mechanical or aerospace engineering beginning Fall 2027.</p>
+  </div>
+
+  <div class="plate">
+    <img src="img/airfrans/phase4_failure_case.jpg" alt="RANS velocity and pressure fields for the worst-predicted case and a well-predicted case">
+    <div class="r">
+      <img src="img/bwb/02-wind-tunnel-mounted-prototype-test-setup.jpg" alt="Carbon-fibre BWB UAV prototype in the wind tunnel">
+      <img src="img/bwb/07-carbon-fiber-composite-airframe-and-winglet.jpg" alt="Carbon-fibre composite airframe and winglet">
+    </div>
+  </div>
+  <p class="cap">Left: RANS fields for the worst-predicted AirfRANS case (likely separated), where the surrogate&rsquo;s drag error reached 139&times; its predicted uncertainty. Right: the carbon-fibre BWB UAV prototype in the wind tunnel, and its composite airframe after demoulding.</p>
+
+  <div class="facts">
+    <div><div class="k">Journal article</div><div class="v">IMechE Part G: Journal of Aerospace Engineering, 2026</div></div>
+    <div><div class="k">Oral presentation</div><div class="v">IBCAST 2025, Fluid Dynamics track</div></div>
+    <div><div class="k">Simulation &rarr; hardware</div><div class="v">CFD-optimized BWB UAV, built in carbon fibre and wind-tunnel tested</div></div>
+  </div>
+
+  <div class="toc">
+    <div class="k">Contents</div>
+    <a href="#statement"><span class="i">01</span><span>Research statement &amp; publication</span><span class="p">2</span></a>
+    <a href="#bwb"><span class="i">02</span><span>Blended-wing-body UAV optimization <span class="d">CFD · GP surrogate · Bayesian optimization · composite prototype</span></span><span class="p">3</span></a>
+    <a href="#airfrans"><span class="i">03</span><span>When can a data-driven surrogate be trusted? <span class="d">AirfRANS airfoil shape optimization</span></span><span class="p">6</span></a>
+    <a href="#cmapss"><span class="i">04</span><span>Turbofan remaining-useful-life prediction <span class="d">NASA C-MAPSS</span></span><span class="p">10</span></a>
+    <a href="#cwru"><span class="i">05</span><span>Rolling-bearing fault diagnosis <span class="d">CWRU vibration data</span></span><span class="p">11</span></a>
+    <a href="#hx"><span class="i">06</span><span>Shell-and-tube heat exchanger <span class="d">design, fabrication &amp; testing</span></span><span class="p">12</span></a>
+    <a href="#profile"><span class="i">07</span><span>Education, experience &amp; skills</span><span class="p">13</span></a>
+  </div>
+
+  <div class="contact">
+    <a href="mailto:shahuns963@gmail.com">shahuns963@gmail.com</a>
+    <a href="https://muhammad-uns-haider-shah.vercel.app">muhammad-uns-haider-shah.vercel.app</a>
+    <a href="https://github.com/uns-haider96">github.com/uns-haider96</a>
+    <a href="https://www.linkedin.com/in/muhammad-uns-haider-shah/">LinkedIn</a>
+  </div>
+</section>
+
+<!-- ================================================================== 2 STATEMENT -->
+<section class="page" id="statement">
+  <div class="runhead"><span><b>01</b> &nbsp;Research statement</span><span>Muhammad Uns Haider Shah</span></div>
+
+  <h1 style="font-size:17pt">Research statement</h1>
+  <p class="lede">I build data-driven models for physical systems, at the point where high-fidelity simulation meets machine learning. My published work pairs RANS CFD with a Gaussian-process surrogate and Bayesian optimization to redesign a blended-wing-body UAV, which was then built in carbon fibre and tested in a wind tunnel.</p>
+  <p class="lede">My recent independent work asks a harder question: not how accurately a surrogate reproduces a flow field, but whether the design it recommends, and the uncertainty it reports, can be trusted.</p>
+
+  <h2>Research interests</h2>
+  <div class="row c2" style="gap:3mm 6mm">
+    <div><h3>Surrogate modeling &amp; design optimization</h3><p>Gaussian-process and neural surrogates trained on CFD data, Bayesian optimization, design of experiments and gradient-based search through differentiable surrogates for aerodynamic shape design.</p></div>
+    <div><h3>Trustworthy uncertainty in data-driven models</h3><p>When a surrogate&rsquo;s predicted uncertainty is a usable stopping signal, and when it is not: calibration, extrapolation, stability of optima under resampling, and failure at changes of flow regime.</p></div>
+    <div><h3>Scientific ML for flow-field prediction</h3><p>Reduced-order modeling, physics-informed neural networks and neural operators for fluid mechanics, currently being studied through a research cohort and not yet applied in a released project.</p></div>
+    <div><h3>Diagnostics &amp; prognostics</h3><p>Vibration-based fault diagnosis for rotating machinery and remaining-useful-life prediction for gas-turbine engines, including the gap between benchmark accuracy and performance under changed operating conditions.</p></div>
+  </div>
+
+  <h2>Publication</h2>
+  <div class="role" style="padding:3mm 3.5mm">
+    <p class="kicker" style="margin-bottom:1mm">Peer-reviewed journal article · Published OnlineFirst, 28 April 2026</p>
+    <h3 style="font-size:10.5pt;margin-bottom:1.5mm">Design and Optimization of a Blended-Wing-Body UAV using AI-Driven Surrogate Modeling and CFD Analysis</h3>
+    <p style="margin-bottom:1mm">M. S. Naseem, <strong>M. U. H. Shah</strong>, M. N. U. Hassan, R. Zubair, A. Afzal, S. Afzal, M. Naseem</p>
+    <p style="font-style:italic;margin-bottom:1.5mm">Proceedings of the Institution of Mechanical Engineers, Part G: Journal of Aerospace Engineering, 2026. DOI <a href="https://doi.org/10.1177/09544100261447561">10.1177/09544100261447561</a></p>
+    <p class="kicker" style="color:var(--ink3);margin:2mm 0 1mm">My contribution</p>
+    <ul style="margin:0">
+      <li>Developed the machine-learning surrogate and optimization pipeline end to end: a Gaussian Process Regression surrogate with Expected-Improvement Bayesian optimization over DOE-structured RANS CFD data, optimizing wing planform, airfoil, winglet and twist. The surrogate&rsquo;s uncertainty estimates drove adaptive sampling of the design space.</li>
+      <li>Conducted the 3D Reynolds-averaged Navier&ndash;Stokes CFD (ANSYS Fluent) that generated the aerodynamic training data and verified the optimized configuration.</li>
+      <li>The wider team project also spanned CAD geometry development, finite-element analysis, carbon-fibre composite prototyping and wind-tunnel testing.</li>
+    </ul>
+  </div>
+
+  <h2>Conference presentation</h2>
+  <p><strong>Oral presentation, IBCAST 2025</strong> (19&ndash;22 Aug 2025). 22nd International Bhurban Conference on Applied Sciences &amp; Technology, Fluid Dynamics track. Presented the blended-wing-body UAV optimization work; camera-ready paper submitted to the proceedings (IEEE Xplore), awaiting publication. <a href="https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization/tree/main/docs/conference">Slides &#8599;</a></p>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">2</span></div>
+</section>
+
+<!-- ================================================================== 3 BWB overview -->
+<section class="page" id="bwb">
+  <div class="runhead"><span><b>02</b> &nbsp;Blended-wing-body UAV · 1/3</span><span>Final-year design project · peer-reviewed publication · 2024&ndash;2025</span></div>
+
+  <h1>Blended-Wing-Body UAV: CFD, Surrogate-Based Optimization, Composite Prototype &amp; Wind Tunnel</h1>
+  <p class="lede">A 1 m blended-wing-body UAV taken from concept to a tested physical prototype: RANS CFD, a Latin-hypercube design of experiments, a Gaussian-process surrogate with Expected-Improvement Bayesian optimization, carbon-fibre fabrication in 3D-printed moulds, and wind-tunnel force-and-moment testing.</p>
+  <p class="links"><a href="https://github.com/uns-haider96/AI-Driven-BWB-UAV-CFD-Optimization">Repository</a><a href="https://doi.org/10.1177/09544100261447561">Journal article</a><a href="https://muhammad-uns-haider-shah.vercel.app/projects/bwb-uav-surrogate-optimization">Online case study</a></p>
+
+  <div class="stats">
+    <div><div class="v">9.9 &rarr; 12.2</div><div class="l">cruise L/D, baseline to optimized</div></div>
+    <div><div class="v">~23 %</div><div class="l">improvement in lift-to-drag ratio</div></div>
+    <div><div class="v">~80</div><div class="l">CFD evaluations in the optimization</div></div>
+    <div><div class="v">1.29 M</div><div class="l">cells, documented Fluent mesh</div></div>
+  </div>
+
+  <div class="role"><span class="t">My role</span>Developed the GP surrogate and Bayesian-optimization pipeline end to end and ran the 3D RANS CFD that generated its training data; the wider team covered CAD, FEA, composite prototyping and wind-tunnel testing.</div>
+
+  <div class="flow"><span class="s">CAD geometry</span><span class="a">&rarr;</span><span class="s">RANS CFD</span><span class="a">&rarr;</span><span class="s">Latin-hypercube DOE</span><span class="a">&rarr;</span><span class="s">GP surrogate</span><span class="a">&rarr;</span><span class="s">Bayesian optimization</span><span class="a">&rarr;</span><span class="s">Optimized geometry</span><span class="a">&rarr;</span><span class="s">Composite manufacture</span><span class="a">&rarr;</span><span class="s">Wind-tunnel test</span></div>
+
+  <div class="row c2">
+    <figure class="fit"><img src="img/bwb/final-bwb-uav-cad-model.jpg" style="height:32mm" alt="CAD model of the BWB UAV"><figcaption><b>FIG. 1</b>Final BWB UAV geometry (half-span CAD model).</figcaption></figure>
+    <div class="tblock"><table><caption><b>TABLE 1</b>Final configuration</caption>
+      <tr><th>Parameter</th><th>Value</th></tr>
+      <tr><td>Wingspan</td><td>1.0 m</td></tr>
+      <tr><td>Root / tip chord</td><td>0.30 m / 0.15 m</td></tr>
+      <tr><td>Aspect ratio</td><td>&asymp; 7</td></tr>
+      <tr><td>Winglet root / tip chord</td><td>0.11 m / 0.05 m</td></tr>
+      <tr><td>Airfoils (centre / mid / wing)</td><td style="white-space:normal">Selig S1223 / NACA 1408 / NACA 0012</td></tr>
+    </table></div>
+  </div>
+
+  <h2><span class="num">01</span>Surrogate model &amp; Bayesian optimization</h2>
+  <p>Several regressors were benchmarked as candidate surrogates (multiple linear, support-vector, random-forest, k-nearest-neighbour and MLP regression). Gaussian Process Regression was selected because it returns a predictive uncertainty as well as a mean, which the Expected-Improvement acquisition needs.</p>
+  <div class="row c2">
+    <figure class="fit"><img src="img/bwb/bayesian-optimization-convergence.jpg" style="height:44mm" alt="Best observed L/D and Expected Improvement against iteration"><figcaption><b>FIG. 2</b>Best observed L/D (blue) rises from &asymp; 9.9 to &asymp; 12.2 while the Expected-Improvement criterion (red, log scale) falls as the optimizer converges.</figcaption></figure>
+    <div class="tblock"><table><caption><b>TABLE 2</b>Baseline vs. optimized design</caption>
+      <tr><th>Parameter / metric</th><th>Baseline</th><th>Optimized</th></tr>
+      <tr><td>Wing area</td><td>0.75 m&sup2;</td><td>0.85 m&sup2;</td></tr>
+      <tr><td>Sweep angle</td><td>30&deg;</td><td>28&deg;</td></tr>
+      <tr><td>Taper ratio</td><td>0.50</td><td>0.48</td></tr>
+      <tr><td>Wing twist</td><td>&minus;2&deg;</td><td>&minus;3&deg;</td></tr>
+      <tr><td>Winglet cant / sweep</td><td>15&deg; / 10&deg;</td><td>20&deg; / 15&deg;</td></tr>
+      <tr><td>Lift coefficient, C<sub>L</sub></td><td>0.330</td><td>0.365</td></tr>
+      <tr><td>Drag coefficient, C<sub>D</sub></td><td>0.0335</td><td>0.0300</td></tr>
+      <tr class="hl"><td>Lift-to-drag ratio, L/D</td><td>9.9</td><td>12.2</td></tr>
+    </table></div>
+  </div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">3</span></div>
+</section>
+
+<!-- ================================================================== 4 BWB CFD -->
+<section class="page">
+  <div class="runhead"><span><b>02</b> &nbsp;Blended-wing-body UAV · 2/3</span><span>CFD &amp; design space</span></div>
+
+  <h2 style="margin-top:0"><span class="num">02</span>CFD methodology</h2>
+  <p>3D external-flow simulations in ANSYS Fluent: steady, pressure-based solver with the SST k-&omega; turbulence model, pressure-farfield boundaries and local mesh refinement around the body and wake. The documented Fluent report is a Mach 0.7 case used for high-speed flow visualisation; it is not the low-speed endurance condition at which L/D was optimized.</p>
+
+  <div class="row c23">
+    <div class="tblock"><table><caption><b>TABLE 3</b>Mesh statistics, documented Fluent case</caption>
+      <tr><th>Quantity</th><th>Value</th></tr>
+      <tr><td>Cells</td><td>1,291,222</td></tr>
+      <tr><td>Faces</td><td>5,568,328</td></tr>
+      <tr><td>Nodes</td><td>3,118,737</td></tr>
+      <tr><td>Min. orthogonal quality</td><td>0.0508</td></tr>
+      <tr><td>Max. aspect ratio</td><td>264.6</td></tr>
+    </table></div>
+    <figure><img src="img/bwb/volume-mesh.jpg" alt="Volume mesh"><figcaption><b>FIG. 3</b>Volume mesh with refinement around the body and wake.</figcaption></figure>
+  </div>
+
+  <div class="row c2">
+    <figure class="fit"><img src="img/bwb/static-pressure-upper-surface.jpg" style="height:42mm" alt="Static pressure, upper surface"><figcaption><b>FIG. 4</b>Static pressure, upper surface.</figcaption></figure>
+    <figure class="fit"><img src="img/bwb/static-pressure-lower-surface.jpg" style="height:42mm" alt="Static pressure, lower surface"><figcaption><b>FIG. 5</b>Static pressure, lower surface.</figcaption></figure>
+  </div>
+
+  <div class="row c3">
+    <figure><img src="img/bwb/mach-contour-root-section.jpg" alt="Mach contour, root"><figcaption><b>FIG. 6</b>Mach contour, root section.</figcaption></figure>
+    <figure><img src="img/bwb/mach-contour-mid-section.jpg" alt="Mach contour, mid-span"><figcaption><b>FIG. 7</b>Mach contour, mid-span.</figcaption></figure>
+    <figure><img src="img/bwb/mach-contour-tip-section.jpg" alt="Mach contour, tip"><figcaption><b>FIG. 8</b>Mach contour, tip section.</figcaption></figure>
+  </div>
+  <p>The root section, where body and lifting surface blend, shows the strongest three-dimensional flow interaction, an important design region for BWB aircraft.</p>
+
+  <h2><span class="num">03</span>Design-space sampling</h2>
+  <div class="row c32">
+    <div>
+      <p>Latin hypercube sampling spread candidate geometries across root and tip chord, sweep, taper ratio, twist, and winglet cant, sweep and chords.</p>
+      <p>The correlation analysis shows mostly weak pairwise correlation between the sampled variables, supporting the space-filling behaviour of the sample used to train the surrogate.</p>
+    </div>
+    <figure class="fit"><img src="img/bwb/correlation-coefficient-heatmap.jpg" style="height:42mm" alt="Correlation coefficient heatmap of sampled parameters"><figcaption><b>FIG. 9</b>Pairwise correlation coefficients between sampled parameters.</figcaption></figure>
+  </div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">4</span></div>
+</section>
+
+<!-- ================================================================== 5 BWB manufacture -->
+<section class="page">
+  <div class="runhead"><span><b>02</b> &nbsp;Blended-wing-body UAV · 3/3</span><span>Composite manufacture &amp; wind tunnel</span></div>
+
+  <h2 style="margin-top:0"><span class="num">04</span>Composite manufacture</h2>
+  <p>The optimized surface was turned into matched mould tooling, 3D-printed in segments, then sanded, aligned and prepared. The airframe was laid up in carbon-fibre / epoxy (twill-weave 3K, 200 gsm) and consolidated by vacuum-bag resin infusion, then demoulded, trimmed and assembled. Structural feasibility of the composite airframe was assessed with finite-element analysis.</p>
+  <div class="row c3">
+    <figure class="crop"><img src="img/bwb/01-mold-3d-printing-full-view.jpg" style="height:42mm" alt="Mould segment being 3D printed"><figcaption><b>FIG. 10</b>Mould segment being 3D printed.</figcaption></figure>
+    <figure class="crop"><img src="img/bwb/03-assembled-3d-printed-mold-halves.jpg" style="height:42mm" alt="Assembled segmented mould"><figcaption><b>FIG. 11</b>Assembled segmented mould.</figcaption></figure>
+    <figure class="crop"><img src="img/bwb/09-carbon-fiber-layup-in-mold.jpg" style="height:42mm" alt="Carbon-fibre layup in the mould"><figcaption><b>FIG. 12</b>Carbon-fibre layup in the mould.</figcaption></figure>
+  </div>
+  <figure class="crop"><img src="img/bwb/07-carbon-fiber-composite-airframe-and-winglet.jpg" style="height:36mm" alt="Composite airframe and winglet"><figcaption><b>FIG. 13</b>Carbon-fibre / epoxy airframe half and winglet after demoulding.</figcaption></figure>
+
+  <h2><span class="num">05</span>Wind-tunnel testing</h2>
+  <p>The manufactured prototype was mounted in a wind tunnel and lift, drag, side force, pitch, yaw and roll were recorded across combinations of wind speed (10, 20 and 28 m/s) and angle. These results are prototype-level experimental characterisation, not a one-to-one validation of the CFD: force-balance calibration, repeatability and uncertainty bounds are not documented in the public material.</p>
+  <div class="row c2">
+    <figure class="crop"><img src="img/bwb/02-wind-tunnel-mounted-prototype-test-setup.jpg" style="height:50mm" alt="Prototype mounted in the wind tunnel"><figcaption><b>FIG. 14</b>Prototype mounted in the wind-tunnel test section.</figcaption></figure>
+    <figure class="fit"><img src="img/bwb/01-wind-tunnel-force-and-moment-results.jpg" style="height:50mm" alt="Force and moment results"><figcaption><b>FIG. 15</b>Maximum lift, drag, side force, pitch, yaw and roll across the test cases.</figcaption></figure>
+  </div>
+
+  <div class="limits"><div class="t">Limitations</div><ul>
+    <li>The repository is documentation-first: the original working scripts are not public; reproducibility-level pseudocode and workflow notes are provided instead.</li>
+    <li>The Mach 0.7 Fluent case is a high-speed visualisation case, distinct from the low-speed endurance optimization condition.</li>
+    <li>Wind-tunnel results are prototype-level characterisation without published calibration or uncertainty analysis.</li>
+  </ul></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">5</span></div>
+</section>
+
+<!-- ================================================================== 6 AirfRANS approach -->
+<section class="page" id="airfrans">
+  <div class="runhead"><span><b>03</b> &nbsp;AirfRANS surrogate study · 1/4</span><span>Independent research · Aug &ndash; Sep 2026</span></div>
+
+  <h1>When Can a Data-Driven Surrogate Be Trusted Inside a Shape-Optimization Loop?</h1>
+  <p class="lede">Neural and Gaussian-process surrogates trained on the AirfRANS steady-RANS benchmark, used to drive airfoil shape optimization and to test when the resulting optimum, and the surrogate&rsquo;s own uncertainty, can be trusted.</p>
+  <p class="quote">Field error is not what decides whether a surrogate is useful for design. What matters is whether it orders candidate designs correctly, and whether the optimum it proposes is real.</p>
+  <p class="links"><a href="https://github.com/uns-haider96/airfrans-surrogate-optimization">Repository</a><a href="https://github.com/uns-haider96/airfrans-surrogate-optimization/blob/main/writeup/writeup.md">Technical write-up</a><a href="https://muhammad-uns-haider-shah.vercel.app/projects/airfrans-surrogate-trust">Online case study</a></p>
+
+  <div class="stats">
+    <div><div class="v">15&times;</div><div class="l">lower surface-pressure error from a global shape descriptor</div></div>
+    <div><div class="v">0.3 %</div><div class="l">median drag error, direct GP force surrogate</div></div>
+    <div><div class="v">0.33 %</div><div class="l">BO and AD-gradient search vs. reference optimum</div></div>
+    <div><div class="v">139&times;</div><div class="l">error vs. predicted &sigma; at a likely flow-regime change</div></div>
+  </div>
+  <div class="role"><span class="t">My role</span>Sole author: data pipeline, all models, optimization and the trust study.</div>
+
+  <h2><span class="num">01</span>Research questions</h2>
+  <ul>
+    <li>What must a surrogate be given in order to rank airfoil designs, rather than merely fit flow fields?</li>
+    <li>Which aerodynamic quantities can a surrogate of this kind rank reliably, and which can it not?</li>
+    <li>When the surrogate proposes an optimum, how far can that optimum be trusted without new high-fidelity simulation?</li>
+  </ul>
+
+  <h2><span class="num">02</span>Data &amp; method</h2>
+  <p>The AirfRANS scarce task: 200 two-dimensional, steady, incompressible RANS simulations (k-&omega; SST, OpenFOAM) over NACA 4- and 5-digit airfoils at Re 2&ndash;6 million and &minus;5&deg; to 15&deg; incidence, about 180,000 mesh nodes per case. Training cases are split 160 / 40 for training and validation; the 200 shared test cases stay untouched until final evaluation. Seven notebook phases cover the data pipeline, pointwise and shape-aware field surrogates, aerodynamic evaluation, direct force surrogates, shape optimization and a trust study.</p>
+  <figure class="fit"><img src="img/airfrans/phase1_example_fields.jpg" style="height:72mm" alt="True, predicted and error fields"><figcaption><b>FIG. 1</b>True (left), predicted (centre) and absolute error (right) for |U|/u&infin;, Cp and &nu;<sub>t</sub>/&nu; on a held-out test case (AoA 1.3&deg;, Re 2.05 M), from the baseline pointwise MLP.</figcaption></figure>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">6</span></div>
+</section>
+
+<!-- ================================================================== 7 AirfRANS shape & drag -->
+<section class="page">
+  <div class="runhead"><span><b>03</b> &nbsp;AirfRANS surrogate study · 2/4</span><span>What a surrogate can rank</span></div>
+
+  <h2 style="margin-top:0"><span class="num">03</span>Shape information lets a surrogate rank designs</h2>
+  <div class="row c11">
+    <div>
+      <p>Both models are trained identically on the same 160 cases; the second also receives a 13-number description of the whole airfoil at each node. Surface pressure depends on the entire airfoil, so without global shape information a pointwise model memorises the training airfoils.</p>
+      <div class="tblock"><table><caption><b>TABLE 1</b>Field surrogates, 200-case test set</caption>
+        <tr><th>Metric</th><th>Pointwise</th><th>Shape-aware</th></tr>
+        <tr><td>Volume field MSE</td><td>0.252</td><td>0.056</td></tr>
+        <tr><td>Surface pressure MSE</td><td>0.967</td><td>0.063</td></tr>
+        <tr><td>Pressure lift RMSE</td><td>0.115</td><td>0.040</td></tr>
+        <tr class="hl"><td>Lift rank correlation</td><td>0.984</td><td>0.998</td></tr>
+        <tr><td>Lift ordering, comparable pairs</td><td>0.902</td><td>0.971</td></tr>
+      </table></div>
+    </div>
+    <figure><img src="img/airfrans/phase1b_example_cp_vs_phase1.jpg" alt="Surface Cp: true, pointwise and shape-aware"><figcaption><b>FIG. 2</b>Surface Cp on a held-out 5-digit airfoil: the shape-aware model (orange) follows the CFD solution (black) far more closely than the pointwise model (dashed).</figcaption></figure>
+  </div>
+
+  <h2><span class="num">04</span>Field surrogates predict lift, and cannot rank drag</h2>
+  <p>Integrating predicted fields to forces gives a median lift error of 2.6 % but a median drag error of 1715 %, with a drag rank correlation of 0.075. The cause is physical: viscous drag is 68 % of total drag and depends on the velocity gradient across a first cell about 2 &micro;m thick, which a smooth network cannot resolve. Enforcing exact no-slip at the wall changed nothing. Every model in the published benchmark also fails to rank drag, although the size of the drag error here is four to five times larger than theirs. Regressing lift and log-drag directly from shape, incidence and Reynolds number bypasses the near-wall problem entirely.</p>
+  <figure class="fit"><img src="img/airfrans/phase2_surface_cp_cf.jpg" style="height:52mm" alt="Surface Cp and Cf"><figcaption><b>FIG. 3</b>Surface Cp (left) is reproduced closely by the shape-aware model, while skin friction Cf (right) is wrong by an order of magnitude: the near-wall gradient that sets viscous drag is not resolved.</figcaption></figure>
+
+  <div class="tblock"><table><caption><b>TABLE 2</b>Direct force surrogates, 200 test cases</caption>
+    <tr><th>Metric</th><th>Field model</th><th>NN ensemble</th><th>Gaussian process</th></tr>
+    <tr><td>Drag relative error (median)</td><td>1715 %</td><td>0.8 %</td><td>0.3 %</td></tr>
+    <tr><td>Drag rank correlation</td><td>0.075</td><td>0.998</td><td>0.999</td></tr>
+    <tr><td>L/D rank correlation</td><td>0.883</td><td>0.997</td><td>0.999</td></tr>
+    <tr><td>Drag ordering, distinguishable pairs</td><td>0.66</td><td>0.995</td><td>1.000</td></tr>
+    <tr class="hl"><td>Log-drag within &plusmn;2&sigma; of predicted uncertainty</td><td>&ndash;</td><td>55 %</td><td>91 %</td></tr>
+  </table><p class="tnote">The Gaussian process is both more accurate and better calibrated; the ensemble&rsquo;s spread under-estimates its own error.</p></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">7</span></div>
+</section>
+
+<!-- ================================================================== 8 AirfRANS optimization & resampling -->
+<section class="page">
+  <div class="runhead"><span><b>03</b> &nbsp;AirfRANS surrogate study · 3/4</span><span>Shape optimization</span></div>
+
+  <h2 style="margin-top:0"><span class="num">05</span>Shape optimization</h2>
+  <p>Two problems over NACA camber, camber position and thickness at Re = 4 &times; 10<sup>6</sup> and &alpha; = 4&deg;, with thickness constrained to &ge; 12 %: maximise L/D, and minimise drag at fixed lift. Gradients come from automatic differentiation through the network and the camber-line formula, with no adjoint solver and no finite differences; they agree with central finite differences to seven decimal places.</p>
+  <div class="tblock"><table><caption><b>TABLE 3</b>Problem 1, maximise L/D</caption>
+    <tr><th>Method</th><th>Surrogate evaluations</th><th>Best L/D</th><th>vs. 200,000-point reference</th></tr>
+    <tr class="hl"><td>Bayesian optimization</td><td>50</td><td>91.73</td><td>&minus;0.03 %</td></tr>
+    <tr><td>Random search (same budget)</td><td>50</td><td>88.89</td><td>+3.07 %</td></tr>
+    <tr><td>Gradient-based, 20 starts</td><td>176 (8.8 per start)</td><td>92.01</td><td>&minus;0.33 %</td></tr>
+  </table></div>
+  <figure><img src="img/airfrans/phase3_convergence.jpg" alt="Optimization convergence"><figcaption><b>FIG. 4</b>Bayesian optimization against a random-search control for both problems, with the dense-sample reference dashed (left, centre). Right: one of 20 gradient-based starts converged to L/D &asymp; 76 instead of &asymp; 92, so restarts are necessary.</figcaption></figure>
+  <div class="row c2">
+    <figure><img src="img/airfrans/phase3_design_space.jpg" alt="Design-space slice"><figcaption><b>FIG. 5</b>Design-space slice: ensemble-predicted L/D (left) and GP uncertainty in log CD (right), with training designs and both optima on the 12 % thickness constraint.</figcaption></figure>
+    <figure><img src="img/airfrans/phase3_optimised_shapes.jpg" alt="Optimised airfoil sections"><figcaption><b>FIG. 6</b>Optimised sections for both problems against a NACA 2412 reference.</figcaption></figure>
+  </div>
+
+  <h2><span class="num">06</span>How far can the optimum be trusted?</h2>
+  <p>Retraining the surrogate on eight random 80 % subsets and repeating the optimization moves the optimal design by roughly 14&ndash;20 % of the design range, and thickness sat on its 12 % bound in every run. Each retrained surrogate rates its own optimum at L/D 93.8 &plusmn; 1.6, but rating one fixed design the retrained surrogates give 91.9 &plusmn; 4.2, from 83.6 to 96.0, while the optimizers compete over differences of 0.3 %. The surrogate identifies a family of candidate designs, not a unique optimum.</p>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">8</span></div>
+</section>
+
+<!-- ================================================================== 9 AirfRANS trust -->
+<section class="page">
+  <div class="runhead"><span><b>03</b> &nbsp;AirfRANS surrogate study · 4/4</span><span>Uncertainty &amp; flow-regime change</span></div>
+
+  <h2 style="margin-top:0"><span class="num">07</span>Does predicted uncertainty track the error?</h2>
+  <div class="row c23">
+    <div class="tblock"><table><caption><b>TABLE 4</b>Drag error as the training band is narrowed</caption>
+      <tr><th>Band narrowed in</th><th>Inside</th><th>Far outside</th><th>Error / &sigma; (far)</th></tr>
+      <tr><td>Reynolds number</td><td>0.8 %</td><td>2.4 %</td><td>0.89</td></tr>
+      <tr><td>Angle of attack</td><td>0.3 %</td><td>4.0 %</td><td>1.60</td></tr>
+    </table><p class="tnote">Near-outside errors: 1.3 % (Re) and 0.5 % (&alpha;).</p></div>
+    <figure><img src="img/airfrans/phase4_controlled_extrapolation.jpg" alt="Controlled extrapolation"><figcaption><b>FIG. 7</b>Actual CD error (blue) and predicted standard deviation (orange). For angle of attack they grow together, so predicted uncertainty is a usable stopping signal; for Reynolds number the error triples while the predicted uncertainty stays flat.</figcaption></figure>
+  </div>
+
+  <div class="callout"><div class="t">The decisive exception</div>
+    <p>The worst-predicted unseen case, a validation case, is a 5.2 %-thick airfoil at &minus;4.4&deg; whose velocity field shows a low-speed region along the whole lower surface, consistent with separation. Its drag is 4.1&times; the training median and 93 % pressure drag; the surrogate under-predicts it by 80 %, an error 139&times; its predicted uncertainty. Only six other cases among the 200 simulations are thinner than 8 % at negative incidence. A surrogate&rsquo;s confidence bounds part of its interpolation error; it cannot see a change of flow regime, because the inputs look ordinary.</p>
+  </div>
+  <figure class="fit"><img src="img/airfrans/phase4_failure_case.jpg" style="height:70mm" alt="Failure case and well-predicted case"><figcaption><b>FIG. 8</b>Left: the failure case (&alpha; &minus;4.4&deg;, 5.2 % thickness) with a low-speed region along the lower surface, consistent with separation. Right: a well-predicted case (&alpha; &minus;0.9&deg;, 19.8 % thickness).</figcaption></figure>
+
+  <h2><span class="num">08</span>Conclusion</h2>
+  <p>A cheap data-driven surrogate narrows a design space quickly; it cannot certify the result. Surrogate-to-surrogate disagreement and the movement of the optimum under resampling both exceed the gains the optimizer is chasing, predicted confidence tracks extrapolation in incidence but not in Reynolds number, and confidence collapses where the flow physics changes rather than where the inputs become unusual. The defensible use is mixed-fidelity: surrogate-based exploration to identify a family of candidates, followed by high-fidelity verification, with adjoint methods as the right tool for high-dimensional gradient refinement.</p>
+
+  <div class="limits"><div class="t">Limitations</div><ul>
+    <li>Incompressible, subsonic flow at Re of a few million; three design variables; force surrogates apply only to NACA 4- and 5-digit airfoils at the trained conditions.</li>
+    <li>No new CFD was run to verify the optima; single training runs, whereas published baselines report five-run means.</li>
+    <li>88 of 496 cases in the benchmark&rsquo;s reynolds / aoa splits overlapped this model&rsquo;s training set and were removed before evaluation.</li>
+  </ul></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">9</span></div>
+</section>
+
+<!-- ================================================================== 10 C-MAPSS -->
+<section class="page" id="cmapss">
+  <div class="runhead"><span><b>04</b> &nbsp;Turbofan RUL prediction</span><span>Independent project · Mar &ndash; May 2026</span></div>
+
+  <h1>Turbofan Remaining-Useful-Life Prediction on NASA C-MAPSS</h1>
+  <p class="lede">An end-to-end prognostics pipeline on the C-MAPSS FD001 run-to-failure dataset: leakage-safe preprocessing, per-engine rolling features, Random Forest RUL regression against a linear baseline, and K-Means degradation profiling.</p>
+  <p class="links"><a href="https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss">Repository</a><a href="https://github.com/uns-haider96/turbofan-rul-prediction-nasa-cmapss/blob/main/CMAPSS_Analysis.ipynb">Notebook</a><a href="https://muhammad-uns-haider-shah.vercel.app/projects/turbofan-rul-cmapss">Online case study</a></p>
+
+  <div class="stats">
+    <div><div class="v">17.97</div><div class="l">RMSE (cycles), Random Forest</div></div>
+    <div><div class="v">12.74</div><div class="l">MAE (cycles), Random Forest</div></div>
+    <div><div class="v">14.1 %</div><div class="l">RMSE improvement over linear baseline</div></div>
+    <div><div class="v">0.63</div><div class="l">importance of smoothed sensor 4 (raw: 0.01)</div></div>
+  </div>
+
+  <div class="row c2" style="gap:6mm">
+    <div>
+      <h2 style="margin-top:0"><span class="num">01</span>Data &amp; preprocessing</h2>
+      <p>FD001: 100 simulated turbofan engines run to failure under one operating condition and one fault mode, with 21 sensors and 3 operational settings per cycle. Lifetimes range from 128 to 362 cycles (mean 206).</p>
+      <ul>
+        <li>Dropped 7 near-constant sensors and sensor 6 (cycle correlation r = 0.11), keeping 14.</li>
+        <li>Piecewise-linear RUL target capped at 125 cycles.</li>
+        <li>5-cycle rolling mean on the 7 most degrading sensors, within each engine to prevent leakage; scaler fitted on training data only.</li>
+      </ul>
+      <h2><span class="num">03</span>Degradation profiles</h2>
+      <p>K-Means (k = 3, elbow method) on the last 20 cycles of each engine, projected with PCA: two clusters share near-identical mean lifetimes (215.2 vs. 217.9 cycles) but distinct sensor fingerprints, so different degradation pathways can lead to the same total life.</p>
+    </div>
+    <div>
+      <h2 style="margin-top:0"><span class="num">02</span>Results</h2>
+      <div class="tblock"><table><caption><b>TABLE 1</b>100 FD001 test engines, true RUL capped at 125</caption>
+        <tr><th>Model</th><th>RMSE</th><th>MAE</th></tr>
+        <tr><td>Linear Regression (baseline)</td><td>20.92</td><td>16.39</td></tr>
+        <tr class="hl"><td>Random Forest</td><td>17.97</td><td>12.74</td></tr>
+      </table></div>
+      <div class="tblock"><table><caption><b>TABLE 2</b>Reported FD001 results, similar capped target</caption>
+        <tr><th>Method</th><th>RMSE</th><th>Source</th></tr>
+        <tr><td>CNN</td><td>18.45</td><td>Babu et al., 2016</td></tr>
+        <tr class="hl"><td>This work: RF + rolling features</td><td>17.97</td><td>&mdash;</td></tr>
+        <tr><td>Deep LSTM</td><td>16.14</td><td>Zheng et al., 2017</td></tr>
+        <tr><td>Deep CNN (time windows)</td><td>12.61</td><td>Li et al., 2018</td></tr>
+      </table><p class="tnote">A competitive classical baseline, short of state-of-the-art sequence models; preprocessing differs, so the comparison is indicative.</p></div>
+    </div>
+  </div>
+
+  <div class="row c32">
+    <figure><img src="img/turbofan/plot6_predictions_vs_actual.jpg" alt="Predicted vs actual RUL"><figcaption><b>FIG. 1</b>Predicted vs. actual RUL on the 100 test engines. Linear regression over-predicts RUL near failure; the Random Forest is markedly safer in the low-RUL zone.</figcaption></figure>
+    <figure class="fit"><img src="img/turbofan/plot7_feature_importance.jpg" style="height:48mm" alt="Feature importance"><figcaption><b>FIG. 2</b>Raw sensor 4 ranks 19th (0.01); its rolling mean ranks 1st (0.63).</figcaption></figure>
+  </div>
+
+  <div class="limits"><div class="t">Limitations</div><ul>
+    <li>Single sub-dataset (one operating condition, one fault mode); each test engine represented by its last cycle only; single train/test run; C-MAPSS is simulated data.</li>
+  </ul></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">10</span></div>
+</section>
+
+<!-- ================================================================== 11 CWRU -->
+<section class="page" id="cwru">
+  <div class="runhead"><span><b>05</b> &nbsp;Bearing fault diagnosis</span><span>Independent project · Oct &ndash; Dec 2025</span></div>
+
+  <h1>Rolling-Bearing Fault Diagnosis from Vibration Signals (CWRU)</h1>
+  <p class="lede">A Random Forest classifier for ten bearing conditions (healthy plus ball, inner-race and outer-race faults at three defect sizes) from nine time-domain statistics of 48 kHz drive-end vibration, with an analysis of where time-domain features fail.</p>
+  <p class="links"><a href="https://github.com/uns-haider96/bearing-fault-detection">Repository</a><a href="https://github.com/uns-haider96/bearing-fault-detection/blob/main/bearing_fault_detection.ipynb">Notebook</a><a href="https://muhammad-uns-haider-shah.vercel.app/projects/bearing-fault-cwru">Online case study</a></p>
+
+  <div class="stats">
+    <div><div class="v">96.4 %</div><div class="l">5-fold stratified CV accuracy (&plusmn; 0.8 %)</div></div>
+    <div><div class="v">92.2 %</div><div class="l">held-out test accuracy (macro F1 0.92)</div></div>
+    <div><div class="v">10</div><div class="l">bearing condition classes</div></div>
+    <div><div class="v">2,300</div><div class="l">2048-sample vibration windows</div></div>
+  </div>
+
+  <h2><span class="num">01</span>Data, features &amp; model</h2>
+  <p>CWRU Bearing Data Center: 2 HP motor at 1772 rpm and 1 HP load, drive-end accelerometer at 48 kHz, single-point EDM defects of 0.007&Prime;, 0.014&Prime; and 0.021&Prime; at three bearing locations. Each 2048-sample window (~0.04 s) is reduced to nine statistics, including RMS, standard deviation, excess kurtosis and crest factor. A 200-tree Random Forest was trained on a stratified 90 / 10 split and evaluated by 5-fold stratified cross-validation.</p>
+
+  <div class="row c2">
+    <figure class="fit"><img src="img/bearing/confusion_matrix.jpg" style="height:50mm" alt="Confusion matrix"><figcaption><b>FIG. 1</b>Held-out confusion matrix: errors concentrate in Ball 0.007&Prime;, Ball 0.021&Prime; and Outer race 0.014&Prime;.</figcaption></figure>
+    <div>
+      <div class="tblock"><table><caption><b>TABLE 1</b>Accuracy</caption>
+        <tr><th>Evaluation</th><th>Accuracy</th></tr>
+        <tr><td>5-fold stratified cross-validation</td><td>96.4 % &plusmn; 0.8 %</td></tr>
+        <tr class="hl"><td>Held-out test set (230 windows)</td><td>92.2 %</td></tr>
+      </table></div>
+      <figure class="fit"><img src="img/bearing/feature_importance.jpg" style="height:27mm" alt="Feature importance"><figcaption><b>FIG. 2</b>Gini importance: energy features (sd, rms) dominate.</figcaption></figure>
+    </div>
+  </div>
+
+  <h2><span class="num">02</span>Where time-domain features fail</h2>
+  <div class="row c11">
+    <p>Healthy windows sit at an excess kurtosis near 0, and several faults are strongly impulsive. But kurtosis does not rise monotonically with defect size: Ball 0.021&Prime; and Outer race 0.014&Prime; look almost as Gaussian as a healthy bearing. Together with Ball 0.007&Prime;, these are the classes the classifier confuses; without impulsive content the time-domain statistics carry little to separate them.</p>
+    <figure><img src="img/bearing/kurtosis_by_class.jpg" alt="Kurtosis by class"><figcaption><b>FIG. 3</b>Excess kurtosis by class: impulsiveness is not monotonic in defect size.</figcaption></figure>
+  </div>
+  <div class="callout"><div class="t">A warning sign, not a finding</div><p>The feature <span class="mono">mean</span> ranks third in importance, but vibration has no physical mean: it mostly captures each recording&rsquo;s DC offset. The model may partly be recognising which recording a window came from rather than the fault itself, one reason the random window-level split is optimistic.</p></div>
+
+  <div class="limits"><div class="t">Limitations</div><ul>
+    <li>Train and test windows share recordings (a recording- or load-level split is the stricter test); single 1 HP load and drive-end sensor; time-domain features only, no envelope-spectrum features at BPFI / BPFO / BSF.</li>
+  </ul></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">11</span></div>
+</section>
+
+<!-- ================================================================== 12 HX -->
+<section class="page" id="hx">
+  <div class="runhead"><span><b>06</b> &nbsp;Shell-and-tube heat exchanger</span><span>Undergraduate course project · Fall 2022</span></div>
+
+  <h1>Shell-and-Tube Heat Exchanger: Design, Fabrication &amp; Thermal Testing</h1>
+  <p class="lede">A baffled shell-and-tube heat exchanger sized from first principles, fabricated, and tested, with the measured energy balance agreeing with the design prediction to within 5 %.</p>
+
+  <div class="stats">
+    <div><div class="v">50 &rarr; 35 &deg;C</div><div class="l">hot-fluid temperature drop</div></div>
+    <div><div class="v">10 &rarr; 22 &deg;C</div><div class="l">cold-fluid temperature rise</div></div>
+    <div><div class="v">&le; 5 %</div><div class="l">energy-balance agreement with prediction</div></div>
+    <div><div class="v">7 ft</div><div class="l">unit length</div></div>
+  </div>
+  <div class="role"><span class="t">My role</span>Design calculations, fabrication and testing as part of the course project.</div>
+
+  <div class="row c2" style="gap:7mm">
+    <div>
+      <h2 style="margin-top:0"><span class="num">01</span>Thermal design</h2>
+      <p>The exchanger was sized from first principles rather than from a catalogue selection:</p>
+      <ul>
+        <li>Log-mean temperature difference (LMTD) method for the required duty.</li>
+        <li>Tube-side convective coefficient from the Dittus&ndash;Boelter correlation.</li>
+        <li>Shell-side coefficient by the Bell&ndash;Delaware method.</li>
+        <li>Fouling factors, baffle spacing and tube count.</li>
+      </ul>
+    </div>
+    <div>
+      <h2 style="margin-top:0"><span class="num">02</span>Fabrication</h2>
+      <div class="tblock"><table><caption><b>TABLE 1</b>As-built unit</caption>
+        <tr><th>Item</th><th>Specification</th></tr>
+        <tr><td>Overall length</td><td>7 ft</td></tr>
+        <tr><td>Shell</td><td>3-inch PVC</td></tr>
+        <tr><td>Tube</td><td>1.2 cm metal tube</td></tr>
+        <tr><td>Shell-side flow</td><td>Baffled</td></tr>
+      </table></div>
+    </div>
+  </div>
+
+  <h2><span class="num">03</span>Experimental validation</h2>
+  <div class="row c2" style="gap:7mm">
+    <div class="tblock"><table><caption><b>TABLE 2</b>Measured temperatures</caption>
+      <tr><th>Stream</th><th>Inlet</th><th>Outlet</th><th>Change</th></tr>
+      <tr><td>Hot fluid</td><td>50 &deg;C</td><td>35 &deg;C</td><td>&minus;15 &deg;C</td></tr>
+      <tr><td>Cold fluid</td><td>10 &deg;C</td><td>22 &deg;C</td><td>+12 &deg;C</td></tr>
+    </table></div>
+    <div><p>The energy balance computed from the measured temperatures agreed with the theoretical prediction to within 5 %, closing the loop from first-principles sizing to a working, instrumented unit.</p></div>
+  </div>
+
+  <div class="limits" style="margin-top:3mm"><div class="t">Note</div><ul>
+    <li>No public repository or photographs of this project are available; the values above are the recorded design and test data.</li>
+  </ul></div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">12</span></div>
+</section>
+
+<!-- ================================================================== 13 PROFILE -->
+<section class="page cv" id="profile">
+  <div class="runhead"><span><b>07</b> &nbsp;Education, experience &amp; skills</span><span>Full CV: muhammad-uns-haider-shah.vercel.app</span></div>
+
+  <div class="row c2" style="gap:0 8mm">
+    <div>
+      <h2 style="margin-top:0">Education</h2>
+      <div class="e"><div class="h"><b>B.Sc. Mechanical Engineering</b><span>Sep 2021 &ndash; Jul 2025</span></div>
+        <div class="o">COMSATS University Islamabad, Wah Campus, Pakistan</div>
+        <div class="small">HEC- and PEC-recognized programme</div>
+        <div class="cw">
+          <span>Computational Fluid Dynamics<i>A&ndash;</i></span><span>Heat &amp; Mass Transfer<i>A&ndash;</i></span>
+          <span>CAD/CAM<i>A&ndash;</i></span><span>Instrumentation &amp; Meas.<i>A&ndash;</i></span>
+          <span>Maintenance Engineering<i>A</i></span><span>Mech. Vibrations Lab<i>A</i></span>
+          <span>Numerical Computations<i>B+</i></span><span>Finite Element Analysis</span>
+          <span>Fluid Mechanics I &amp; II</span><span>Thermodynamics I &amp; II</span>
+        </div>
+      </div>
+
+      <h2>Professional experience</h2>
+      <div class="e"><div class="h"><b>Management Trainee Officer (Engineering)</b><span>Aug 2026 &ndash; present</span></div>
+        <div class="o">DynTek Engineering Pvt Ltd · Islamabad</div>
+        <ul><li>Computational design and analysis for aerospace systems: CAD geometry, CAE and finite-element analysis, and CFD simulation.</li>
+        <li>Applying scientific machine learning and surrogate modeling to simulation-based design.</li></ul></div>
+      <div class="e"><div class="h"><b>Independent Researcher</b><span>Oct 2025 &ndash; present</span></div>
+        <div class="o">Islamabad, Pakistan</div>
+        <ul><li>Self-directed research on the reliability of machine-learning surrogates for engineering design: uncertainty calibration, extrapolation, and the stability of surrogate-predicted optima.</li>
+        <li>Machine learning for CFD: neural and Gaussian-process surrogates trained on RANS simulations (AirfRANS) to drive airfoil shape optimization.</li></ul></div>
+      <div class="e"><div class="h"><b>CMMS Engineer, Asset Reliability &amp; Predictive Maintenance</b><span>Jan &ndash; Aug 2026</span></div>
+        <div class="o">Invotyx (ADNOC Programme) · Islamabad</div>
+        <ul><li>Built and validated ISO 14224-compliant asset hierarchies and SAP PM master data for rotating and static equipment.</li></ul></div>
+      <div class="e"><div class="h"><b>Aerospace B1 Engineering Intern, Line Maintenance</b><span>Jul &ndash; Aug 2024</span></div>
+        <div class="o">Pakistan International Airlines (PIA)</div>
+        <ul><li>Transit, daily and cabin checks across ATR-42/72, A320 and B-777 fleets.</li></ul></div>
+    </div>
+
+    <div>
+      <h2 style="margin-top:0">Specialized training</h2>
+      <div class="e"><div class="h"><b>Machine Learning and AI for Fluid Dynamics</b><span>Jun 2026 &ndash; present</span></div>
+        <div class="o">FlowThermoLab · cohort led by Prof. Ricardo Vinuesa</div>
+        <ul><li>Reduced-order modeling (POD/DMD, autoencoders), transformers for flow fields, PINNs and neural operators (FNO, DeepONet), in PyTorch.</li></ul></div>
+      <div class="e"><div class="h"><b>Professional Data Analytics Certification</b><span>Nov 2025 &ndash; May 2026</span></div>
+        <div class="o">Institute of Emerging Careers</div></div>
+
+      <h2>Technical skills</h2>
+      <div class="skills">
+        <div><div class="k">Scientific ML &amp; surrogates</div>Gaussian Process Regression, Bayesian optimization, DOE, uncertainty quantification &amp; calibration, neural ensembles, autodiff design sensitivities</div>
+        <div><div class="k">Computational &amp; CAE</div>ANSYS Fluent (3D RANS, k-&omega; SST), ANSYS Mechanical (FEA), SolidWorks, AutoCAD</div>
+        <div><div class="k">Programming &amp; ML</div>Python, PyTorch, scikit-learn, NumPy, pandas, Matplotlib; Random Forests, K-Means, PCA</div>
+        <div><div class="k">Prognostics &amp; reliability</div>Vibration health indicators, degradation features, RUL regression, ISO 14224, SAP PM</div>
+        <div><div class="k">Experimental &amp; fabrication</div>Carbon-fibre / epoxy layup, vacuum-bag infusion, 3D-printed tooling, wind-tunnel testing</div>
+        <div><div class="k">Tools</div>Git / GitHub, LaTeX, SQL, Power BI, Arduino (C++)</div>
+      </div>
+
+      <h2>Leadership &amp; affiliations</h2>
+      <div class="e"><div class="h"><b>Planning Head &amp; Treasurer, ASME CUI Wah</b><span>Sep 2023 &ndash; Jul 2025</span></div>
+        <ul><li>Planning Head (2023&ndash;24): planned the programme of events; Best Member of the Year 2023&ndash;24.</li>
+        <li>Treasurer (2024&ndash;25): managed an annual budget of about PKR 200,000; wrote the three applications that won the section its ASME Student Community Grants (about USD 1,000).</li></ul></div>
+      <ul style="font-size:7.9pt">
+        <li>Member (Early Career), ASME, 2026 &ndash; present</li>
+        <li>Student member 2023&ndash;2025 of AIAA, RAeS, IMechE, ASME and ASEE</li>
+        <li>Registered Engineer, Pakistan Engineering Council (PEC)</li>
+      </ul>
+
+      <h2>Contact</h2>
+      <p style="font-size:8pt;margin:0">
+        <a href="mailto:shahuns963@gmail.com">shahuns963@gmail.com</a><br>
+        <a href="https://muhammad-uns-haider-shah.vercel.app">muhammad-uns-haider-shah.vercel.app</a><br>
+        <a href="https://github.com/uns-haider96">github.com/uns-haider96</a> · <a href="https://www.linkedin.com/in/muhammad-uns-haider-shah/">LinkedIn</a><br>
+        Islamabad, Pakistan
+      </p>
+    </div>
+  </div>
+
+  <div class="foot"><span>Muhammad Uns Haider Shah · Research Portfolio</span><span class="n">13</span></div>
+</section>
+
+</body>
+</html>

@@ -61,7 +61,7 @@ export default function Home() {
             </div>
           </div>
 
-          <figure className="rounded-sm border border-rule bg-surface p-3 shadow-[0_1px_0_var(--rule)]">
+          <figure className="avoid-break rounded-sm border border-rule bg-surface p-3 shadow-[0_1px_0_var(--rule)] print:mx-auto print:max-w-[62%]">
             <div className="grid grid-cols-2 gap-3">
               <div className="figure-plate relative col-span-2 aspect-[2.02/1] overflow-hidden rounded-sm border border-rule">
                 <Image
@@ -103,7 +103,7 @@ export default function Home() {
         </div>
 
         <div className="border-t border-rule bg-paper/70">
-          <dl className="mx-auto grid max-w-6xl grid-cols-2 gap-px px-4 sm:px-6 lg:grid-cols-4">
+          <dl className="avoid-break mx-auto grid max-w-6xl grid-cols-2 gap-px px-4 sm:px-6 lg:grid-cols-4">
             {[
               ["Journal article", "IMechE Part G: J. Aerospace Engineering, 2026"],
               ["Oral presentation", "IBCAST 2025, Fluid Dynamics track"],
@@ -123,9 +123,9 @@ export default function Home() {
         {/* ------------------------------------------------------ research */}
         <section id="research" className="scroll-mt-20">
           <SectionHeading index="01" title="Research interests" />
-          <div className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2">
+          <div className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2 print:gap-3 print:border-0 print:bg-transparent">
             {researchInterests.map((r) => (
-              <article key={r.title} className="bg-surface p-6">
+              <article key={r.title} className="avoid-break bg-surface p-6 print:border print:border-rule">
                 <h3 className="font-serif text-lg font-semibold text-ink">{r.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-2">{r.body}</p>
                 <ul className="mt-4 flex flex-wrap gap-1.5">
@@ -142,61 +142,63 @@ export default function Home() {
 
         {/* --------------------------------------------------- publication */}
         <section id="publication" className="scroll-mt-20">
-          <SectionHeading index="02" title="Publication & presentation" />
-          <article className="rounded-sm border border-rule bg-surface p-6 sm:p-8">
-            <p className="font-mono text-[0.7rem] uppercase tracking-widest text-accent">
-              Peer-reviewed journal article · {publication.status}
-            </p>
-            <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-ink sm:text-2xl">
-              {publication.title}
-            </h3>
-            <p className="mt-3 text-sm text-ink-2">
-              {publication.authors.map((a, i) => (
-                <span key={a}>
-                  {a === publication.self ? <strong className="font-semibold text-ink">{a}</strong> : a}
-                  {i < publication.authors.length - 1 ? ", " : ""}
-                </span>
-              ))}
-            </p>
-            <p className="mt-1 text-sm italic text-ink-2">
-              {publication.venue}, {publication.year}.
-            </p>
+          <div className="avoid-break">
+            <SectionHeading index="02" title="Publication & presentation" />
+            <article className="rounded-sm border border-rule bg-surface p-6 sm:p-8">
+              <p className="font-mono text-[0.7rem] uppercase tracking-widest text-accent">
+                Peer-reviewed journal article · {publication.status}
+              </p>
+              <h3 className="mt-3 font-serif text-xl font-semibold leading-snug text-ink sm:text-2xl">
+                {publication.title}
+              </h3>
+              <p className="mt-3 text-sm text-ink-2">
+                {publication.authors.map((a, i) => (
+                  <span key={a}>
+                    {a === publication.self ? <strong className="font-semibold text-ink">{a}</strong> : a}
+                    {i < publication.authors.length - 1 ? ", " : ""}
+                  </span>
+                ))}
+              </p>
+              <p className="mt-1 text-sm italic text-ink-2">
+                {publication.venue}, {publication.year}.
+              </p>
 
-            <div className="mt-5 flex flex-wrap gap-3">
-              <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer" className={btnPrimary}>
-                DOI {publication.doi} <ArrowUpRight className="h-3.5 w-3.5" />
-              </a>
-              <a href={publication.repo} target="_blank" rel="noreferrer" className={btnSecondary}>
-                <GitHubIcon className="h-4 w-4" /> Project repository
-              </a>
-              <Link href="/projects/bwb-uav-surrogate-optimization" className={btnSecondary}>
-                Case study
-              </Link>
-            </div>
-
-            <h4 className="mt-8 font-mono text-[0.7rem] uppercase tracking-widest text-ink-3">My contribution</h4>
-            <ul className="mt-3 space-y-2 pl-5 text-[0.95rem] leading-relaxed text-ink-2 marker:text-accent [list-style-type:square]">
-              {publication.contribution.map((c) => (
-                <li key={c.slice(0, 24)} className="pl-1">{c}</li>
-              ))}
-            </ul>
-
-            <details className="group mt-6 rounded-sm border border-rule bg-sunken">
-              <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 font-mono text-xs text-ink-2 [&::-webkit-details-marker]:hidden">
-                BibTeX
-                <span className="text-ink-3 group-open:hidden">show</span>
-                <span className="hidden text-ink-3 group-open:inline">hide</span>
-              </summary>
-              <div className="border-t border-rule p-4">
-                <div className="mb-2 flex justify-end">
-                  <CopyButton text={publication.bibtex} label="Copy BibTeX" />
-                </div>
-                <pre className="overflow-x-auto font-mono text-[0.75rem] leading-relaxed text-ink-2">{publication.bibtex}</pre>
+              <div className="mt-5 flex flex-wrap gap-3">
+                <a href={`https://doi.org/${publication.doi}`} target="_blank" rel="noreferrer" className={btnPrimary}>
+                  DOI {publication.doi} <ArrowUpRight className="h-3.5 w-3.5" />
+                </a>
+                <a href={publication.repo} target="_blank" rel="noreferrer" className={btnSecondary}>
+                  <GitHubIcon className="h-4 w-4" /> Project repository
+                </a>
+                <Link href="/projects/bwb-uav-surrogate-optimization" className={btnSecondary}>
+                  Case study
+                </Link>
               </div>
-            </details>
-          </article>
 
-          <article className="mt-4 flex flex-col gap-3 rounded-sm border border-rule bg-surface p-6 sm:flex-row sm:items-start sm:justify-between">
+              <h4 className="mt-8 font-mono text-[0.7rem] uppercase tracking-widest text-ink-3">My contribution</h4>
+              <ul className="mt-3 space-y-2 pl-5 text-[0.95rem] leading-relaxed text-ink-2 marker:text-accent [list-style-type:square]">
+                {publication.contribution.map((c) => (
+                  <li key={c.slice(0, 24)} className="pl-1">{c}</li>
+                ))}
+              </ul>
+
+              <details className="group mt-6 rounded-sm border border-rule bg-sunken">
+                <summary className="flex cursor-pointer list-none items-center justify-between px-4 py-2.5 font-mono text-xs text-ink-2 [&::-webkit-details-marker]:hidden">
+                  BibTeX
+                  <span className="text-ink-3 group-open:hidden">show</span>
+                  <span className="hidden text-ink-3 group-open:inline">hide</span>
+                </summary>
+                <div className="border-t border-rule p-4">
+                  <div className="mb-2 flex justify-end">
+                    <CopyButton text={publication.bibtex} label="Copy BibTeX" />
+                  </div>
+                  <pre className="overflow-x-auto font-mono text-[0.75rem] leading-relaxed text-ink-2">{publication.bibtex}</pre>
+                </div>
+              </details>
+            </article>
+          </div>
+
+          <article className="avoid-break mt-4 flex flex-col gap-3 rounded-sm border border-rule bg-surface p-6 sm:flex-row sm:items-start sm:justify-between">
             <div>
               <p className="font-mono text-[0.7rem] uppercase tracking-widest text-accent">Conference · {presentation.date}</p>
               <h3 className="mt-2 font-serif text-lg font-semibold text-ink">{presentation.title}</h3>
@@ -211,13 +213,16 @@ export default function Home() {
 
         {/* ------------------------------------------------------ projects */}
         <section id="projects" className="scroll-mt-20">
-          <SectionHeading
-            index="03"
-            title="Research & engineering projects"
-            kicker="Each case study reports the repository's own numbers, figures and stated limitations."
-          />
-          <div className="space-y-6">
-            {featured.map((p) => (
+          <div className="avoid-break">
+            <SectionHeading
+              index="03"
+              title="Research & engineering projects"
+              kicker="Each case study reports the repository's own numbers, figures and stated limitations."
+            />
+            {featured[0] ? <ProjectCard project={featured[0]} featured /> : null}
+          </div>
+          <div className="mt-6 space-y-6">
+            {featured.slice(1).map((p) => (
               <ProjectCard key={p.slug} project={p} featured />
             ))}
           </div>
@@ -233,7 +238,7 @@ export default function Home() {
           <SectionHeading index="04" title="Professional experience" />
           <ol className="relative space-y-10 border-l border-rule pl-6 sm:pl-8">
             {experience.map((e) => (
-              <li key={e.role} className="relative">
+              <li key={e.role} className="avoid-break relative">
                 <span aria-hidden className="absolute -left-[calc(1.5rem+4.5px)] top-1.5 h-2 w-2 rounded-full border border-accent bg-paper sm:-left-[calc(2rem+4.5px)]" />
                 <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                   <h3 className="font-serif text-lg font-semibold text-ink">{e.role}</h3>
@@ -256,7 +261,7 @@ export default function Home() {
         <section id="education" className="scroll-mt-20">
           <SectionHeading index="05" title="Education & training" />
           <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr]">
-            <article className="rounded-sm border border-rule bg-surface p-6">
+            <article className="avoid-break rounded-sm border border-rule bg-surface p-6">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                 <h3 className="font-serif text-xl font-semibold text-ink">{education.degree}</h3>
                 <p className="font-mono text-xs text-ink-3">{education.period}</p>
@@ -280,7 +285,7 @@ export default function Home() {
 
             <div className="space-y-4">
               {training.map((t) => (
-                <article key={t.title} className="rounded-sm border border-rule bg-surface p-6">
+                <article key={t.title} className="avoid-break rounded-sm border border-rule bg-surface p-6">
                   <p className="font-mono text-[0.7rem] uppercase tracking-widest text-accent">{t.period}</p>
                   <h3 className="mt-2 font-serif text-lg font-semibold text-ink">{t.title}</h3>
                   <p className="text-sm text-ink-3">{t.org}</p>
@@ -294,9 +299,9 @@ export default function Home() {
         {/* -------------------------------------------------------- skills */}
         <section id="skills" className="scroll-mt-20">
           <SectionHeading index="06" title="Technical skills" />
-          <div className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3">
+          <div className="grid gap-px overflow-hidden rounded-sm border border-rule bg-rule sm:grid-cols-2 lg:grid-cols-3 print:gap-3 print:border-0 print:bg-transparent">
             {skills.map((s) => (
-              <div key={s.group} className="bg-surface p-5">
+              <div key={s.group} className="avoid-break bg-surface p-5 print:border print:border-rule">
                 <h3 className="font-mono text-[0.72rem] uppercase tracking-widest text-accent">{s.group}</h3>
                 <ul className="mt-3 space-y-1 text-sm text-ink-2">
                   {s.items.map((i) => (
@@ -312,7 +317,7 @@ export default function Home() {
         <section id="leadership" className="scroll-mt-20">
           <SectionHeading index="07" title="Leadership, awards & affiliations" />
           <div className="grid gap-6 md:grid-cols-2">
-            <article className="rounded-sm border border-rule bg-surface p-6">
+            <article className="avoid-break rounded-sm border border-rule bg-surface p-6">
               <div className="flex flex-col gap-1 sm:flex-row sm:items-baseline sm:justify-between">
                 <h3 className="font-serif text-lg font-semibold text-ink">{leadership.role}</h3>
                 <p className="font-mono text-xs text-ink-3">{leadership.period}</p>
@@ -324,7 +329,7 @@ export default function Home() {
                 ))}
               </ul>
             </article>
-            <article className="rounded-sm border border-rule bg-surface p-6">
+            <article className="avoid-break rounded-sm border border-rule bg-surface p-6">
               <h3 className="font-serif text-lg font-semibold text-ink">Professional affiliations</h3>
               <ul className="mt-3 space-y-1.5 pl-5 text-sm leading-relaxed text-ink-2 marker:text-ink-3 [list-style-type:square]">
                 {affiliations.map((a) => (
