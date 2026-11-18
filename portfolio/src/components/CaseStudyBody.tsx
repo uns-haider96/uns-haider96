@@ -85,7 +85,7 @@ export function CaseStudyBody({ project }: { project: Project }) {
       case "table": {
         tab += 1;
         return (
-          <div key={key} className="my-2">
+          <div key={key} className="avoid-break my-2">
             <p className="mb-2 text-[0.825rem] text-ink-2">
               <span className="mr-1.5 font-mono text-[0.75rem] font-medium uppercase tracking-wider text-accent">
                 Table {tab}

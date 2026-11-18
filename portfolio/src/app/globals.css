@@ -105,12 +105,23 @@ body {
 }
 
 @media print {
-  header,
-  footer,
-  nav {
+  .site-header,
+  .site-footer,
+  .no-print {
     display: none !important;
   }
   body {
     background: #fff;
+  }
+  figure,
+  table,
+  aside,
+  tr,
+  .avoid-break {
+    break-inside: avoid;
+  }
+  h2,
+  h3 {
+    break-after: avoid;
   }
 }

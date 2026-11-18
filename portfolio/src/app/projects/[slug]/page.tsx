@@ -47,7 +47,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
       {/* ------------------------------------------------------------ header */}
       <header className="drafting-grid border-b border-rule">
         <div className="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16">
-          <nav aria-label="Breadcrumb" className="font-mono text-xs text-ink-3">
+          <nav aria-label="Breadcrumb" className="no-print font-mono text-xs text-ink-3">
             <Link href="/#projects" className="hover:text-accent">Projects</Link>
             <span className="mx-2">/</span>
             <span className="text-ink-2">{project.shortTitle}</span>
@@ -104,7 +104,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
 
       {/* -------------------------------------------------------------- body */}
       <div className="mx-auto grid max-w-6xl gap-12 px-4 pt-12 sm:px-6 lg:grid-cols-[200px_minmax(0,1fr)]">
-        <aside className="hidden lg:block">
+        <aside className="no-print hidden lg:block">
           <div className="sticky top-24 space-y-8">
             <nav aria-label="On this page">
               <p className="font-mono text-[0.7rem] uppercase tracking-widest text-ink-3">On this page</p>
@@ -142,7 +142,7 @@ export default async function ProjectPage({ params }: { params: Promise<Params> 
           </div>
 
           {project.cover ? (
-            <div className="mb-14">
+            <div className="mb-14 print:mx-auto print:max-w-[78%]">
               <Figure figure={project.cover} repo={project.repo} priority />
             </div>
           ) : null}

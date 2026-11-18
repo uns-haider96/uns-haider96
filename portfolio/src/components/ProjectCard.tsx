@@ -13,7 +13,7 @@ export function ProjectCard({ project, featured = false }: { project: Project; f
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className={`group flex h-full flex-col overflow-hidden rounded-sm border border-rule bg-surface transition-colors hover:border-accent ${featured ? "lg:flex-row" : ""}`}
+      className={`avoid-break group flex h-full flex-col overflow-hidden rounded-sm border border-rule bg-surface transition-colors hover:border-accent ${featured ? "lg:flex-row" : ""}`}
     >
       {project.cover ? (
         <div
